@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
-const StyledHero = styled.section`
+export const HeroContainerStyled = styled.section`
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -30,8 +29,8 @@ const StyledHero = styled.section`
   }
 
   p {
-    font-size: 15px;
-    color: #efb810;
+    font-size: 13px;
+    color: #9e7b13;
     text-align: center;
     line-height: 23px;
     text-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
@@ -39,13 +38,22 @@ const StyledHero = styled.section`
 
   @media (min-width: 500px) {
     p {
-      font-size: 17px;
+      font-size: 15px;
+      line-height: 25px;
     }
   }
 
-  @media (min-width: 748px) {
+  @media (min-width: 700px) {
+    p {
+      font-size: 17px;
+      line-height: 25px;
+    }
+  }
+
+  @media (min-width: 1000px) {
     p {
       font-size: 20px;
+      line-height: 30px;
     }
   }
 
@@ -61,23 +69,3 @@ const StyledHero = styled.section`
     }
   }
 `;
-
-const Header = () => {
-  return (
-    <StyledHero>
-      <p>
-        Soy Cristian Zambosco, atleta del fisicoculturismo y personal trainer
-        con una trayectoria de más de 15 años. <br />
-        Durante años, he estado comprometido con el desarrollo de mi cuerpo y la
-        mejora de mi rendimiento. En mi viaje, he descubierto la importancia del
-        entrenamiento adecuado y cómo los suplementos de calidad pueden marcar
-        la diferencia en tus resultados. <br />
-        Si querés una los mejores productos de suplementación de alta calidad,
-        estás en el lugar indicado!
-      </p>
-      <img src="hero.jpg" alt="Hero" />
-    </StyledHero>
-  );
-};
-
-export default Header;

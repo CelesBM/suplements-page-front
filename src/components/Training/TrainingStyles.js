@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
-const StyledTraining = styled.section`
+export const ContainerTrainingStyled = styled.section`
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -67,19 +66,3 @@ const StyledTraining = styled.section`
     }
   }
 `;
-
-const Training = () => {
-  return (
-    <StyledTraining>
-      <h3>Próximamente</h3>
-      <img src="team.jpeg" alt="Team" />
-      <p>
-        Querés un entrenamiento personalizado para lograr tu mejor versión?
-        Estamos trabajando en una plataforma para que puedas acceder desde
-        cualquier parte del mundo!
-      </p>
-    </StyledTraining>
-  );
-};
-
-export default Training;
