@@ -1,14 +1,92 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts } from "../../components/Product/productActions";
+import { products as data } from "../../data/productsData";
+import CardProduct from "../../components/Product/CardProduct";
 import { motion } from "framer-motion";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import { ContainerSectionProductsStyled } from "./ProductsStyles";
 import { ContainerProductsStyled } from "./ProductsStyles";
-import { ContainerProductStyled } from "./ProductsStyles";
-import { ProductInfoStyled } from "./ProductsStyles";
-import { ButtonStyled } from "./ProductsStyles";
+import { ContainerSectionProductsStyled } from "./ProductsStyles";
+import { ContainerCategoriesStyled } from "./ProductsStyles";
+import { ButtonCategoriesStyled } from "./ProductsStyles";
+import Header from "../../components/Header/Header";
 
 const Products = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products);
+
+  useEffect(() => {
+    dispatch(setProducts(data));
+  }, [dispatch]);
+
+  return (
+    <>
+      <ContainerSectionProductsStyled>
+        <Header />
+
+        <ContainerCategoriesStyled>
+          <motion.div whileTap={{ scale: 1.1 }}>
+            <ButtonCategoriesStyled>Todos los productos</ButtonCategoriesStyled>{" "}
+          </motion.div>
+          <motion.div whileTap={{ scale: 1.1 }}>
+            <ButtonCategoriesStyled>Proteína</ButtonCategoriesStyled>{" "}
+          </motion.div>
+          <motion.div whileTap={{ scale: 1.1 }}>
+            <ButtonCategoriesStyled>Quemador</ButtonCategoriesStyled>{" "}
+          </motion.div>
+          <motion.div whileTap={{ scale: 1.1 }}>
+            <ButtonCategoriesStyled>BCAA</ButtonCategoriesStyled>{" "}
+          </motion.div>
+          <motion.div whileTap={{ scale: 1.1 }}>
+            <ButtonCategoriesStyled>Creatina</ButtonCategoriesStyled>{" "}
+          </motion.div>
+          <motion.div whileTap={{ scale: 1.1 }}>
+            <ButtonCategoriesStyled>Glutamina</ButtonCategoriesStyled>{" "}
+          </motion.div>
+          <motion.div whileTap={{ scale: 1.1 }}>
+            <ButtonCategoriesStyled>Carnitina</ButtonCategoriesStyled>{" "}
+          </motion.div>
+        </ContainerCategoriesStyled>
+        <ContainerProductsStyled>
+          {products.map((product, index) => (
+            <CardProduct
+              img={product.img}
+              title={product.title}
+              info={product.info}
+              price={product.price}
+              key={product.id}
+              index={index}
+            />
+          ))}
+        </ContainerProductsStyled>
+      </ContainerSectionProductsStyled>
+    </>
+  );
+};
+
+export default Products;
+
+/*
+
+
+
+const Products = () => {
+  return (
+    <div className="products-container">
+      {products.map((product) => (
+        <CardProduct
+          key={product.id}
+          title={product.title}
+          info={product.info}
+          price={product.price}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Products;*/
+
+/*const Products = () => {
   return (
     <>
       <Header />
@@ -100,4 +178,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Products;*/

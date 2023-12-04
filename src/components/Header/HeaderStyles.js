@@ -100,6 +100,7 @@ export const IconStyled = styled.div`
 `;
 
 export const SpanStyled = styled.div`
+  color: #575748;
   font-weight: bold;
   text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.1);
 `;

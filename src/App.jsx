@@ -1,3 +1,6 @@
+import React from "react";
+//import { Provider } from "react-redux";
+//import { store } from "./redux/store/store";
 import "./App.css";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { ContextProvider } from "./Context/Context";
@@ -9,6 +12,7 @@ function App() {
       <ContextProvider>
         <Router />
       </ContextProvider>
+
       <GlobalStyles />
     </>
   );

@@ -17,7 +17,8 @@ export const HeroContainerStyled = styled.section`
 
   @media (min-width: 768px) {
     flex-direction: row;
-    margin-top: 120px;
+    margin-top: 150px;
+    gap: 30px;
   }
 
   @media (min-width: 1020px) {
@@ -50,6 +51,12 @@ export const HeroContainerStyled = styled.section`
     }
   }
 
+  @media (min-width: 768px) {
+    p {
+      width: 50%;
+    }
+  }
+
   @media (min-width: 1000px) {
     p {
       font-size: 20px;
@@ -57,10 +64,28 @@ export const HeroContainerStyled = styled.section`
     }
   }
 
+  @media (min-width: 1250px) {
+    p {
+      line-height: 40px;
+    }
+  }
+
   img {
-    width: 100%;
+    width: 250px;
     border-radius: 1rem;
     box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
+  }
+
+  @media (min-width: 500px) {
+    img {
+      width: 300px;
+    }
+  }
+
+  @media (min-width: 650px) {
+    img {
+      width: 350px;
+    }
   }
 
   @media (min-width: 768px) {
