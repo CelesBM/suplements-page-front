@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setProducts,
@@ -14,16 +15,17 @@ import { ButtonCategoriesStyled } from "./ProductsStyles";
 import Header from "../../components/Header/Header";
 
 const Products = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
   const dispatch = useDispatch();
-  //const products = useSelector((state) => state.products.products);
-  const products = useSelector((state) => state.products.filteredProducts); // Obtén los productos filtrados del estado
+  const products = useSelector((state) => state.products.filteredProducts);
 
   useEffect(() => {
     dispatch(setProducts(data));
   }, [dispatch]);
 
   const handleFilterByCategory = (category) => {
-    dispatch(filterProductsByCategory(category)); // Despachar la acción de filtrado con la categoría seleccionada
+    dispatch(filterProductsByCategory(category));
+    setActiveCategory(category);
   };
 
   return (
@@ -35,6 +37,11 @@ const Products = () => {
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled
               onClick={() => handleFilterByCategory("All")}
+              style={{
+                backgroundColor:
+                  activeCategory === "All" ? "#2a2a28" : "initial",
+                color: activeCategory === "All" ? "#efb810" : "#575748",
+              }}
             >
               Todos los productos
             </ButtonCategoriesStyled>{" "}
@@ -42,6 +49,11 @@ const Products = () => {
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled
               onClick={() => handleFilterByCategory("Protein")}
+              style={{
+                backgroundColor:
+                  activeCategory === "Protein" ? "#2a2a28" : "initial",
+                color: activeCategory === "Protein" ? "#efb810" : "#575748",
+              }}
             >
               Proteína
             </ButtonCategoriesStyled>{" "}
@@ -49,6 +61,11 @@ const Products = () => {
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled
               onClick={() => handleFilterByCategory("FatBurner")}
+              style={{
+                backgroundColor:
+                  activeCategory === "FatBurner" ? "#2a2a28" : "initial",
+                color: activeCategory === "FatBurner" ? "#efb810" : "#575748",
+              }}
             >
               Quemador
             </ButtonCategoriesStyled>{" "}
@@ -56,6 +73,11 @@ const Products = () => {
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled
               onClick={() => handleFilterByCategory("BCAA")}
+              style={{
+                backgroundColor:
+                  activeCategory === "BCAA" ? "#2a2a28" : "initial",
+                color: activeCategory === "BCAA" ? "#efb810" : "#575748",
+              }}
             >
               BCAA
             </ButtonCategoriesStyled>{" "}
@@ -63,6 +85,11 @@ const Products = () => {
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled
               onClick={() => handleFilterByCategory("Creatine")}
+              style={{
+                backgroundColor:
+                  activeCategory === "Creatine" ? "#2a2a28" : "initial",
+                color: activeCategory === "Creatine" ? "#efb810" : "#575748",
+              }}
             >
               Creatina
             </ButtonCategoriesStyled>{" "}
@@ -70,6 +97,11 @@ const Products = () => {
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled
               onClick={() => handleFilterByCategory("Glutamine")}
+              style={{
+                backgroundColor:
+                  activeCategory === "Glutamine" ? "#2a2a28" : "initial",
+                color: activeCategory === "Glutamine" ? "#efb810" : "#575748",
+              }}
             >
               Glutamina
             </ButtonCategoriesStyled>{" "}
@@ -77,6 +109,11 @@ const Products = () => {
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled
               onClick={() => handleFilterByCategory("L-Carnitine")}
+              style={{
+                backgroundColor:
+                  activeCategory === "L-Carnitine" ? "#2a2a28" : "initial",
+                color: activeCategory === "L-Carnitine" ? "#efb810" : "#575748",
+              }}
             >
               Carnitina
             </ButtonCategoriesStyled>{" "}
@@ -100,5 +137,3 @@ const Products = () => {
 };
 
 export default Products;
-
-/* ------------------------------------------------ */
