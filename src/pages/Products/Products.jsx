@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../../components/Product/productActions";
+import {
+  setProducts,
+  filterProductsByCategory,
+} from "../../components/Product/productActions";
 import { products as data } from "../../data/productsData";
 import CardProduct from "../../components/Product/CardProduct";
 import { motion } from "framer-motion";
@@ -12,11 +15,16 @@ import Header from "../../components/Header/Header";
 
 const Products = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
+  //const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products.filteredProducts); // Obtén los productos filtrados del estado
 
   useEffect(() => {
     dispatch(setProducts(data));
   }, [dispatch]);
+
+  const handleFilterByCategory = (category) => {
+    dispatch(filterProductsByCategory(category)); // Despachar la acción de filtrado con la categoría seleccionada
+  };
 
   return (
     <>
@@ -25,25 +33,53 @@ const Products = () => {
 
         <ContainerCategoriesStyled>
           <motion.div whileTap={{ scale: 1.1 }}>
-            <ButtonCategoriesStyled>Todos los productos</ButtonCategoriesStyled>{" "}
+            <ButtonCategoriesStyled
+              onClick={() => handleFilterByCategory("All")}
+            >
+              Todos los productos
+            </ButtonCategoriesStyled>{" "}
           </motion.div>
           <motion.div whileTap={{ scale: 1.1 }}>
-            <ButtonCategoriesStyled>Proteína</ButtonCategoriesStyled>{" "}
+            <ButtonCategoriesStyled
+              onClick={() => handleFilterByCategory("Protein")}
+            >
+              Proteína
+            </ButtonCategoriesStyled>{" "}
           </motion.div>
           <motion.div whileTap={{ scale: 1.1 }}>
-            <ButtonCategoriesStyled>Quemador</ButtonCategoriesStyled>{" "}
+            <ButtonCategoriesStyled
+              onClick={() => handleFilterByCategory("FatBurner")}
+            >
+              Quemador
+            </ButtonCategoriesStyled>{" "}
           </motion.div>
           <motion.div whileTap={{ scale: 1.1 }}>
-            <ButtonCategoriesStyled>BCAA</ButtonCategoriesStyled>{" "}
+            <ButtonCategoriesStyled
+              onClick={() => handleFilterByCategory("BCAA")}
+            >
+              BCAA
+            </ButtonCategoriesStyled>{" "}
           </motion.div>
           <motion.div whileTap={{ scale: 1.1 }}>
-            <ButtonCategoriesStyled>Creatina</ButtonCategoriesStyled>{" "}
+            <ButtonCategoriesStyled
+              onClick={() => handleFilterByCategory("Creatine")}
+            >
+              Creatina
+            </ButtonCategoriesStyled>{" "}
           </motion.div>
           <motion.div whileTap={{ scale: 1.1 }}>
-            <ButtonCategoriesStyled>Glutamina</ButtonCategoriesStyled>{" "}
+            <ButtonCategoriesStyled
+              onClick={() => handleFilterByCategory("Glutamine")}
+            >
+              Glutamina
+            </ButtonCategoriesStyled>{" "}
           </motion.div>
           <motion.div whileTap={{ scale: 1.1 }}>
-            <ButtonCategoriesStyled>Carnitina</ButtonCategoriesStyled>{" "}
+            <ButtonCategoriesStyled
+              onClick={() => handleFilterByCategory("L-Carnitine")}
+            >
+              Carnitina
+            </ButtonCategoriesStyled>{" "}
           </motion.div>
         </ContainerCategoriesStyled>
         <ContainerProductsStyled>
@@ -65,117 +101,4 @@ const Products = () => {
 
 export default Products;
 
-/*
-
-
-
-const Products = () => {
-  return (
-    <div className="products-container">
-      {products.map((product) => (
-        <CardProduct
-          key={product.id}
-          title={product.title}
-          info={product.info}
-          price={product.price}
-        />
-      ))}
-    </div>
-  );
-};
-
-export default Products;*/
-
-/*const Products = () => {
-  return (
-    <>
-      <Header />
-      <ContainerSectionProductsStyled>
-        <h3>Productos</h3>
-        <ContainerProductsStyled>
-          <ContainerProductStyled>
-            <img
-              src="https://www.tiendaculturista.com/blog/wp-content/uploads/2019/05/LIFE-PRO-ESSENTIALS-CLA.jpg"
-              alt=""
-            />
-            <ProductInfoStyled>
-              <h5>$5000</h5>
-              <h4>CLA</h4>
-              <motion.div whileTap={{ scale: 1.3 }} whileHover={{ scale: 1.1 }}>
-                <ButtonStyled>Comprar</ButtonStyled>
-              </motion.div>
-            </ProductInfoStyled>
-          </ContainerProductStyled>
-          <ContainerProductStyled>
-            <img
-              src="https://www.tiendaculturista.com/blog/wp-content/uploads/2019/05/LIFE-PRO-ESSENTIALS-CLA.jpg"
-              alt=""
-            />
-            <ProductInfoStyled>
-              <h5>$5000</h5>
-              <h4>CLA</h4>
-              <motion.div whileTap={{ scale: 1.3 }} whileHover={{ scale: 1.1 }}>
-                <ButtonStyled>Comprar</ButtonStyled>
-              </motion.div>
-            </ProductInfoStyled>
-          </ContainerProductStyled>
-          <ContainerProductStyled>
-            <img
-              src="https://www.tiendaculturista.com/blog/wp-content/uploads/2019/05/LIFE-PRO-ESSENTIALS-CLA.jpg"
-              alt=""
-            />
-            <ProductInfoStyled>
-              <h5>$5000</h5>
-              <h4>CLA</h4>
-              <motion.div whileTap={{ scale: 1.3 }} whileHover={{ scale: 1.1 }}>
-                <ButtonStyled>Comprar</ButtonStyled>
-              </motion.div>
-            </ProductInfoStyled>
-          </ContainerProductStyled>
-          <ContainerProductStyled>
-            <img
-              src="https://www.tiendaculturista.com/blog/wp-content/uploads/2019/05/LIFE-PRO-ESSENTIALS-CLA.jpg"
-              alt=""
-            />
-            <ProductInfoStyled>
-              <h5>$5000</h5>
-              <h4>CLA</h4>
-              <motion.div whileTap={{ scale: 1.3 }} whileHover={{ scale: 1.1 }}>
-                <ButtonStyled>Comprar</ButtonStyled>
-              </motion.div>
-            </ProductInfoStyled>
-          </ContainerProductStyled>
-          <ContainerProductStyled>
-            <img
-              src="https://www.tiendaculturista.com/blog/wp-content/uploads/2019/05/LIFE-PRO-ESSENTIALS-CLA.jpg"
-              alt=""
-            />
-            <ProductInfoStyled>
-              <h5>$5000</h5>
-              <h4>CLA</h4>
-              <motion.div whileTap={{ scale: 1.3 }} whileHover={{ scale: 1.1 }}>
-                <ButtonStyled>Comprar</ButtonStyled>
-              </motion.div>
-            </ProductInfoStyled>
-          </ContainerProductStyled>
-          <ContainerProductStyled>
-            <img
-              src="https://www.tiendaculturista.com/blog/wp-content/uploads/2019/05/LIFE-PRO-ESSENTIALS-CLA.jpg"
-              alt=""
-            />
-            <ProductInfoStyled>
-              <h5>$5000</h5>
-              <h4>CLA</h4>
-              <motion.div whileTap={{ scale: 1.3 }} whileHover={{ scale: 1.1 }}>
-                <ButtonStyled>Comprar</ButtonStyled>
-              </motion.div>
-            </ProductInfoStyled>
-          </ContainerProductStyled>
-        </ContainerProductsStyled>
-      </ContainerSectionProductsStyled>
-      <Footer />
-    </>
-  );
-};
-
-export default Products;*/
+/* ------------------------------------------------ */
