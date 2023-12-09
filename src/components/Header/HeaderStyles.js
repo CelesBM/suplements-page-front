@@ -23,6 +23,7 @@ export const HeaderContainerStyled = styled.header`
   width: 100%;
   height: 70px;
   text-align: center;
+  justify-content: center;
   padding: 8px 5px;
   position: fixed;
   top: 0;
@@ -41,20 +42,16 @@ export const NavbarContainerStyled = styled.nav`
   gap: 15px;
   padding: 0px 10px;
 
-  @media (min-width: 400px) {
-    padding: 0px 20px;
-  }
-
-  @media (min-width: 400px) {
-    padding: 0px 25px;
+  @media (min-width: 500px) {
+    padding: 0px 15px;
   }
 
   @media (min-width: 768px) {
-    padding: 0px 50px;
+    padding: 0px 20px;
   }
 
   @media (min-width: 1020px) {
-    padding: 0px 70px;
+    padding: 0px 30px;
   }
 
   img {
@@ -77,10 +74,12 @@ export const NavbarContainerStyled = styled.nav`
 
 export const LinksContainerStyled = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: 1020px) {
-    gap: 70px;
+    gap: 40px;
   }
 `;
 
@@ -99,10 +98,80 @@ export const IconStyled = styled.div`
   color: #9e7b13;
 `;
 
+export const IconShopStyled = styled.div`
+  color: #9e7b13;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-bottom: 5px;
+
+  @media (min-width: 450px) {
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+
+  @media (min-width: 500px) {
+    margin-bottom: 15px;
+    font-size: 30px;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+
+  @media (min-width: 1020px) {
+    font-size: 20px;
+  }
+`;
+
+export const IconNumber = styled.div`
+  background-color: #ae995d;
+  padding: 2px;
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+  font-size: 10px;
+
+  @media (min-width: 500px) {
+    padding: 3px;
+    font-size: 11px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 1px 3px;
+    font-size: 10px;
+  }
+
+  @media (min-width: 1020px) {
+    font-size: 12px;
+  }
+`;
+
 export const SpanStyled = styled.div`
   color: #575748;
   font-weight: bold;
   text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.1);
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 1020px) {
+    font-size: 16px;
+  }
+`;
+
+export const CartCounter = styled.span`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 4px;
+  border-radius: 50%;
 `;
 
 export const HamburguerStyled = styled.div`
@@ -144,7 +213,7 @@ export const LinkHamburguerContainerStyled = styled.div`
   gap: 10px;
   width: 100%;
   position: absolute;
-  top: 75px;
+  top: 70px;
   right: 0px;
   background: rgb(177, 172, 67);
   background: linear-gradient(

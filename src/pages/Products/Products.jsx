@@ -1,18 +1,20 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { products as data } from "../../data/productsData";
+import Header from "../../components/Header/Header";
+import CardProduct from "../../components/Product/CardProduct";
+import { addToShop } from "../../redux/shop/shopSlice";
 import {
   setProducts,
   filterProductsByCategory,
-} from "../../components/Product/productActions";
-import { products as data } from "../../data/productsData";
-import CardProduct from "../../components/Product/CardProduct";
-import { motion } from "framer-motion";
-import { ContainerProductsStyled } from "./ProductsStyles";
-import { ContainerSectionProductsStyled } from "./ProductsStyles";
-import { ContainerCategoriesStyled } from "./ProductsStyles";
-import { ButtonCategoriesStyled } from "./ProductsStyles";
-import Header from "../../components/Header/Header";
+} from "../../redux/Product/productSlice";
+import {
+  ContainerProductsStyled,
+  ContainerSectionProductsStyled,
+  ContainerCategoriesStyled,
+  ButtonCategoriesStyled,
+} from "./ProductsStyles";
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -23,9 +25,12 @@ const Products = () => {
     dispatch(setProducts(data));
   }, [dispatch]);
 
-  const handleFilterByCategory = (category) => {
+  // Filtra por categoria:
+
+  const handleFilterByCategory = (category, product) => {
     dispatch(filterProductsByCategory(category));
     setActiveCategory(category);
+    dispatch(addToShop(product));
   };
 
   return (
@@ -122,12 +127,14 @@ const Products = () => {
         <ContainerProductsStyled>
           {products.map((product, index) => (
             <CardProduct
+              id={product.id}
               img={product.img}
               title={product.title}
               info={product.info}
               price={product.price}
               key={product.id}
               index={index}
+              onClick={() => handleFilterByCategory(activeCategory, product)}
             />
           ))}
         </ContainerProductsStyled>

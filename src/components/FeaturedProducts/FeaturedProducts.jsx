@@ -1,11 +1,11 @@
 import React from "react";
-import { ContainerProductsStyled } from "./FeatureProducts";
-import { ProductsStyled } from "./FeatureProducts";
-import { ProductStyled } from "./FeatureProducts";
-import { InfoProductStyled } from "./FeatureProducts";
-import { ButtonProductStyled } from "./FeatureProducts";
+import { ContainerProductsStyled } from "./FeaturedProducts";
+import { ProductsStyled } from "./FeaturedProducts";
+import { ProductStyled } from "./FeaturedProducts";
+import { InfoProductStyled } from "./FeaturedProducts";
+import { ButtonProductStyled } from "./FeaturedProducts";
 
-const Products = () => {
+const FeaturedProducts = () => {
   return (
     <>
       <ContainerProductsStyled>
@@ -43,10 +43,10 @@ const Products = () => {
           </ProductStyled>
         </ProductsStyled>
 
-        <ButtonProductStyled>Ver más</ButtonProductStyled>
+        <ButtonProductStyled>Ver todos</ButtonProductStyled>
       </ContainerProductsStyled>
     </>
   );
 };
 
-export default Products;
+export default FeaturedProducts;

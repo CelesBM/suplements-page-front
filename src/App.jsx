@@ -3,14 +3,17 @@ import React from "react";
 //import { store } from "./redux/store/store";
 import "./App.css";
 import { GlobalStyles } from "./styles/GlobalStyles";
-import { ContextProvider } from "./Context/Context";
+import { ContextProvider } from "./Context/ContextMenu";
+import { ShopContextProvider } from "./Context/ContextShop";
 import Router from "./Router/Router";
 
 function App() {
   return (
     <>
       <ContextProvider>
-        <Router />
+        <ShopContextProvider>
+          <Router />
+        </ShopContextProvider>
       </ContextProvider>
 
       <GlobalStyles />

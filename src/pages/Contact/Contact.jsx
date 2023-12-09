@@ -13,7 +13,6 @@ import { motion } from "framer-motion";
 const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes manejar la lógica de envío del formulario
   };
 
   return (

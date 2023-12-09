@@ -6,6 +6,7 @@ export const products = [
     info: "Suplemento en polvo Xtrenght Nutrition Best Whey proteínas sabor chocolate en pote de 907g",
     price: 12000,
     category: "Protein",
+    small: true,
   },
   {
     id: 2,
