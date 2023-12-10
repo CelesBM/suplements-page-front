@@ -6,6 +6,8 @@ export const ShopContainerStyled = styled.div`
   right: 0px;
   width: 200px;
   border-bottom-left-radius: 20px;
+  max-height: 400px;
+  overflow-y: auto; // Barra de desplazamiento vertical del carrito.
   background: linear-gradient(
     0deg,
     rgba(177, 172, 67, 1) 0%,
@@ -65,6 +67,7 @@ export const ShopContainerStyled = styled.div`
   }
 
   .empty-shop {
+    color: #7c7c76;
     font-size: 12px;
     font-weight: bold;
     text-align: center;
@@ -74,6 +77,16 @@ export const ShopContainerStyled = styled.div`
   @media (min-width: 500px) {
     .empty-shop {
       font-size: 14px;
+    }
+  }
+
+  &.wide-image img {
+    width: 210px;
+  }
+
+  @media (min-width: 768px) {
+    &.wide-image img {
+      width: 260px;
     }
   }
 `;
@@ -112,6 +125,7 @@ export const SpanStyled = styled.div`
   align-items: center;
   font-size: 12px;
   gap: 5px;
+
   text-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
 
   @media (min-width: 500px) {
@@ -130,6 +144,7 @@ export const SpanStyled = styled.div`
 
   p {
     font-weight: bold;
+    color: #7c7c76;
   }
 
   @media (min-width: 450px) {
@@ -188,6 +203,7 @@ export const ContainerButtonsStyled = styled.div`
   }
 
   p {
+    color: #7c7c76;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
@@ -226,6 +242,7 @@ export const TotalPriceStyled = styled.div`
   text-align: center;
   text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
   margin: 10px 0px;
+  color: #7c7c76;
 
   @media (min-width: 450px) {
     font-size: 15px;

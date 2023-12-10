@@ -127,7 +127,7 @@ export const IconShopStyled = styled.div`
 `;
 
 export const IconNumber = styled.div`
-  background-color: #ae995d;
+  background-color: #7c7c76;
   padding: 2px;
   border-radius: 5px;
   color: black;

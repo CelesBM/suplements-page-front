@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import {
   ShopContainerStyled,
   ShopProductsContainerStyled,
@@ -19,8 +20,18 @@ import {
   removeProduct,
   clearShop,
 } from "../../redux/shop/shopSlice";
+import {
+  ModalRemoveOneProduct,
+  ModalRemoveAllProducts,
+  ModalSuccessBuy,
+} from "../Modal/Modal";
 
 const ShopContainer = ({ isOpen }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [showEmptyCartModal, setShowEmptyCartModal] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [showProductRemovedModal, setShowProductRemovedModal] = useState(false); // Nuevo estado para el modal de producto eliminado
+  const [removedProductTitle, setRemovedProductTitle] = useState(""); // Para almacenar el título del producto eliminado
   const shopItems = useSelector((state) => state.shop.shopItems);
   const dispatch = useDispatch();
 
@@ -37,11 +48,23 @@ const ShopContainer = ({ isOpen }) => {
   // Para eliminar el producto del carrito:
   const handleRemove = (product) => {
     dispatch(removeProduct(product));
+    setRemovedProductTitle(product.title); // Guardar el título del producto eliminado
+    setShowProductRemovedModal(true); // Mostrar el modal al eliminar un producto
+
+    setTimeout(() => {
+      setShowProductRemovedModal(false);
+    }, 1000);
   };
 
   // Para eliminar todos los productos del carrito:
   const handleClearShop = () => {
     dispatch(clearShop());
+    setShowEmptyCartModal(true); // Mostrar el modal al vaciar el carrito
+
+    // Cerrar el modal automáticamente después de 2 segundos
+    setTimeout(() => {
+      setShowEmptyCartModal(false);
+    }, 1000);
   };
 
   // Para calcular el precio total del carrito
@@ -51,6 +74,14 @@ const ShopContainer = ({ isOpen }) => {
       totalPrice += item.price * item.quantity;
     });
     return totalPrice;
+  };
+
+  const handleBuy = () => {
+    dispatch(clearShop());
+    setShowPurchaseModal(true); // Mostrar el modal al realizar la compra
+    setTimeout(() => {
+      setShowPurchaseModal(false);
+    }, 1000);
   };
 
   return (
@@ -88,15 +119,19 @@ const ShopContainer = ({ isOpen }) => {
           <p className="empty-shop">No hay elementos en el carrito</p>
         )}
       </ShopProductsContainerStyled>
-
       <TotalPriceStyled>
         {shopItems.length > 0 && <p>Total a pagar: ${handleTotalPrice()}</p>}{" "}
       </TotalPriceStyled>
+      {showProductRemovedModal && <ModalRemoveOneProduct />}
       {shopItems.length > 0 && (
         <ButtonStyled onClick={handleClearShop}>Vaciar carrito </ButtonStyled>
       )}
+      {shopItems.length > 0 && (
+        <ButtonStyled onClick={handleBuy}>Comprar </ButtonStyled>
+      )}
 
-      {shopItems.length > 0 && <ButtonStyled>Comprar </ButtonStyled>}
+      {showEmptyCartModal && <ModalRemoveAllProducts />}
+      {showPurchaseModal && <ModalSuccessBuy />}
     </ShopContainerStyled>
   );
 };

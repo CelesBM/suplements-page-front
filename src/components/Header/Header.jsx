@@ -27,6 +27,20 @@ const Header = () => {
   const { isMenuOpen, toggleMenu } = useAppMenuContext(); // Context para abrir el menú hamburguesa
   const { isShopOpen, toggleShop } = useAppShopContext(); // Context para abrir el carrito de compras
 
+  const handleMenuToggle = () => {
+    toggleMenu();
+    if (isShopOpen) {
+      toggleShop(); // Cierra el carrito si está abierto al abrir el menú
+    }
+  };
+
+  const handleShopToggle = () => {
+    toggleShop();
+    if (isMenuOpen) {
+      toggleMenu(); // Cierra el menú si está abierto al abrir el carrito
+    }
+  };
+
   return (
     <HeaderContainerStyled>
       <NavbarContainerStyled>
@@ -90,11 +104,11 @@ const Header = () => {
               </LinkStyled>
             </MotionDivStyled>
           </LinkContainerStyled>
-          <IconStyled onClick={toggleShop}>
+          <IconStyled onClick={handleShopToggle}>
             <IconLength />
           </IconStyled>
 
-          <HamburguerStyled onClick={toggleMenu}>
+          <HamburguerStyled onClick={handleMenuToggle}>
             <motion.div whileTap={{ scale: 1.2 }}>
               <BiMenuAltRight />
             </motion.div>
