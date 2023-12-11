@@ -99,18 +99,7 @@ const Products = () => {
               Creatina
             </ButtonCategoriesStyled>{" "}
           </motion.div>
-          <motion.div whileTap={{ scale: 1.1 }}>
-            <ButtonCategoriesStyled
-              onClick={() => handleFilterByCategory("Glutamine")}
-              style={{
-                backgroundColor:
-                  activeCategory === "Glutamine" ? "#2a2a28" : "initial",
-                color: activeCategory === "Glutamine" ? "#efb810" : "#575748",
-              }}
-            >
-              Glutamina
-            </ButtonCategoriesStyled>{" "}
-          </motion.div>
+          <motion.div whileTap={{ scale: 1.1 }}></motion.div>
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled
               onClick={() => handleFilterByCategory("L-Carnitine")}

@@ -49,6 +49,7 @@ export const ShopContainerStyled = styled.div`
   }
 
   h3 {
+    color: #efb810;
     font-size: 14px;
     margin-bottom: 20px;
     text-align: center;
@@ -70,7 +71,7 @@ export const ShopContainerStyled = styled.div`
     color: #7c7c76;
     font-size: 12px;
     font-weight: bold;
-    text-align: center;
+    text-align: end;
     text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
   }
 
@@ -242,7 +243,7 @@ export const TotalPriceStyled = styled.div`
   text-align: center;
   text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
   margin: 10px 0px;
-  color: #7c7c76;
+  color: #efb810;
 
   @media (min-width: 450px) {
     font-size: 15px;

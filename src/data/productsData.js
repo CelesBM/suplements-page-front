@@ -18,14 +18,6 @@ export const products = [
   },
   {
     id: 3,
-    title: "Glutamina",
-    img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/106/887/products/glutamine-5001-673a9209fb7752824016257704688252-480-0.png",
-    info: "Suplemento en polvo Xtrenght Nutrition Glutamina en pote de 300g",
-    price: 6000,
-    category: "Glutamine",
-  },
-  {
-    id: 4,
     title: "Quemador de grasa",
     img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/002/507/221/products/cutter-5001-0fea64e50328197af116662068843089-480-0.png",
     info: "Suplemento en polvo Xtrenght Nutrition quemador de grasa en pote de 120g",
@@ -33,7 +25,7 @@ export const products = [
     category: "FatBurner",
   },
   {
-    id: 5,
+    id: 4,
     title: "XT Gold Protein",
     img: "https://i0.wp.com/www.htn.com.ar/wp-content/uploads/2020/06/htn-pro-xt-gold.png?fit=1024%2C1280&ssl=1",
     info: "Suplemento en polvo HTN proteína con BCAA + glutamina + creatina en pote de 500g",
@@ -41,7 +33,7 @@ export const products = [
     category: "Protein",
   },
   {
-    id: 6,
+    id: 5,
     title: "USA Whey Protein",
     img: "https://www.htn.com.ar/wp-content/uploads/2020/06/htn-xplode-usa-whey-protein-1.png",
     info: "Suplemento en polvo HTN proteína en pote de 500g",
@@ -49,7 +41,7 @@ export const products = [
     category: "Protein",
   },
   {
-    id: 7,
+    id: 6,
     title: "USA SOY Protein",
     img: "https://titansport.com.ar/wp-content/uploads/2021/07/htn-xplode-usa-soy-protein-1.png",
     info: "Suplemento en polvo HTN proteína vegetal en pote de 500g",
@@ -57,7 +49,7 @@ export const products = [
     category: "Protein",
   },
   {
-    id: 8,
+    id: 7,
     title: "Creatina Monohidrato",
     img: "https://www.htn.com.ar/wp-content/uploads/2020/08/htn-xplode-creatina.png",
     info: "Suplemento en polvo HTN creatina monohidrato en pote de 200g",
@@ -65,7 +57,7 @@ export const products = [
     category: "Creatine",
   },
   {
-    id: 9,
+    id: 8,
     title: "BCAA pack",
     img: "https://www.htn.com.ar/wp-content/uploads/2020/08/htn-xplode-bcaa-pack-micronized.png",
     info: "Suplemento en polvo HTN BCAA pack micronizado en pote de 120g",
@@ -73,7 +65,7 @@ export const products = [
     category: "BCAA",
   },
   {
-    id: 10,
+    id: 9,
     title: "BCAA 8.0",
     img: "https://i0.wp.com/www.htn.com.ar/wp-content/uploads/2020/06/htn-pro-beta-bcaa-8.png?fit=1024%2C1280&ssl=1",
     info: "Suplemento en polvo HTN BCAA pack micronizado en pote de 120g",
@@ -81,7 +73,7 @@ export const products = [
     category: "BCAA",
   },
   {
-    id: 11,
+    id: 10,
     title: "L-Carnitina",
     img: "https://i0.wp.com/www.htn.com.ar/wp-content/uploads/2020/08/htn-xplode-carnitine.png?resize=200%2C250&ssl=1",
     info: "Suplemento en polvo HTN L-carnitina en pote de 120g",

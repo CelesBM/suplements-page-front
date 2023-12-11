@@ -14,7 +14,7 @@ export const ContainerTrainingStyled = styled.section`
     border-color: #575652;
     border-radius: 1rem;
     padding: 10px 16px;
-    font-size: 15px;
+    font-size: 13px;
     color: #efb810;
     text-align: center;
     box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
@@ -23,14 +23,19 @@ export const ContainerTrainingStyled = styled.section`
   @media (min-width: 400px) {
     h3 {
       padding: 14px 20px;
-      font-size: 18px;
+      font-size: 15px;
     }
   }
 
-  @media (min-width: 748px) {
+  @media (min-width: 500px) {
     h3 {
-      padding: 18px 26px;
-      font-size: 22px;
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    h3 {
+      font-size: 18px;
     }
   }
 
@@ -47,22 +52,23 @@ export const ContainerTrainingStyled = styled.section`
   }
 
   p {
-    font-size: 15px;
+    font-size: 13px;
     line-height: 23px;
-    color: #efb810;
+    color: #7c7c76;
+    font-weight: bold;
     text-align: center;
     text-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
   }
 
   @media (min-width: 500px) {
     p {
-      font-size: 16px;
+      font-size: 15px;
     }
   }
 
   @media (min-width: 748px) {
     p {
-      font-size: 20px;
+      font-size: 17px;
     }
   }
 `;

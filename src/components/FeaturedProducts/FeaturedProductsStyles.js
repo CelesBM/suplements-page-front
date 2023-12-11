@@ -6,15 +6,16 @@ export const ContainerProductsStyled = styled.section`
   align-content: center;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
   gap: 50px;
-  padding: 80px 30px;
+  padding: 50px 30px;
 
   h3 {
     background-color: #131311;
     border-color: #575652;
     border-radius: 1rem;
     padding: 10px 16px;
-    font-size: 15px;
+    font-size: 14px;
     color: #efb810;
     text-align: center;
     box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
@@ -23,14 +24,20 @@ export const ContainerProductsStyled = styled.section`
   @media (min-width: 400px) {
     h3 {
       padding: 14px 20px;
-      font-size: 18px;
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 500px) {
+    h3 {
+      font-size: 16px;
     }
   }
 
   @media (min-width: 748px) {
     h3 {
       padding: 18px 26px;
-      font-size: 22px;
+      font-size: 18px;
     }
   }
 `;
@@ -51,8 +58,8 @@ export const ProductsStyled = styled.div`
 
 export const ProductStyled = styled.div`
   background-color: #131311;
-  width: 250px;
-  height: 280px;
+  width: 200px;
+  height: 250px;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -63,9 +70,9 @@ export const ProductStyled = styled.div`
   padding: 10px;
   box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.1);
 
-  @media (min-width: 650px) {
-    width: 270px;
-    height: 300px;
+  @media (min-width: 600px) {
+    width: 230px;
+    height: 280px;
   }
 
   @media (min-width: 768px) {
@@ -112,15 +119,27 @@ export const InfoProductStyled = styled.div`
   gap: 5px;
 
   h5 {
-    color: #efb810;
-    font-size: 14px;
+    color: #7c7c76;
+    font-size: 13px;
     text-align: center;
+  }
+
+  @media (min-width: 500px) {
+    h5 {
+      font-size: 15px;
+    }
   }
 
   h4 {
     color: #efb810;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
+  }
+
+  @media (min-width: 500px) {
+    h4 {
+      font-size: 15px;
+    }
   }
 `;
 
@@ -129,12 +148,16 @@ export const ButtonProductStyled = styled.button`
   border: none;
   border-radius: 1rem;
   padding: 8px 14px;
-  font-size: 14px;
+  font-size: 13px;
   color: #efb810;
   text-align: center;
   box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
 
   @media (min-width: 400px) {
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  @media (min-width: 500px) {
+    font-size: 15px;
   }
 `;

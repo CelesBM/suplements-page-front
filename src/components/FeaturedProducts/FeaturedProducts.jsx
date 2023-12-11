@@ -1,9 +1,10 @@
 import React from "react";
-import { ContainerProductsStyled } from "./FeaturedProducts";
-import { ProductsStyled } from "./FeaturedProducts";
-import { ProductStyled } from "./FeaturedProducts";
-import { InfoProductStyled } from "./FeaturedProducts";
-import { ButtonProductStyled } from "./FeaturedProducts";
+import { Link } from "react-router-dom";
+import { ContainerProductsStyled } from "./FeaturedProductsStyles";
+import { ProductsStyled } from "./FeaturedProductsStyles";
+import { ProductStyled } from "./FeaturedProductsStyles";
+import { InfoProductStyled } from "./FeaturedProductsStyles";
+import { ButtonProductStyled } from "./FeaturedProductsStyles";
 
 const FeaturedProducts = () => {
   return (
@@ -13,37 +14,38 @@ const FeaturedProducts = () => {
         <ProductsStyled>
           <ProductStyled>
             <img
-              src="https://dcdn.mitiendanube.com/stores/001/309/032/products/best-whey1-dd320c05fb7e7337bb15985414105884-1024-1024.png"
+              src="https://i0.wp.com/www.htn.com.ar/wp-content/uploads/2020/06/htn-pro-xt-gold.png?fit=1024%2C1280&ssl=1"
               alt=""
             />
             <InfoProductStyled>
               <h5>$5000</h5>
-              <h4>CLA</h4>
+              <h4>XT Gold Protein</h4>
             </InfoProductStyled>
           </ProductStyled>
           <ProductStyled>
             <img
-              src="https://acdn.mitiendanube.com/stores/001/224/919/products/advance-whey-vainilla-4f2196804dc8177b1816263833768553-240-0.png"
+              src="https://www.htn.com.ar/wp-content/uploads/2020/08/htn-xplode-creatina.png"
               alt=""
             />
             <InfoProductStyled>
-              <h5>$5000</h5>
-              <h4>CLA</h4>
+              <h5>$13000</h5>
+              <h4>Creatina Monohidrato</h4>
             </InfoProductStyled>
           </ProductStyled>
           <ProductStyled>
             <img
-              src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/106/887/products/glutamine-5001-673a9209fb7752824016257704688252-480-0.png"
+              src="https://www.htn.com.ar/wp-content/uploads/2020/08/htn-xplode-bcaa-pack-micronized.png"
               alt=""
             />
             <InfoProductStyled>
-              <h5>$5000</h5>
-              <h4>CLA</h4>
+              <h5>$4000</h5>
+              <h4>BCAA pack</h4>
             </InfoProductStyled>
           </ProductStyled>
         </ProductsStyled>
-
-        <ButtonProductStyled>Ver todos</ButtonProductStyled>
+        <Link to="/products">
+          <ButtonProductStyled>Ver todos los productos</ButtonProductStyled>
+        </Link>
       </ContainerProductsStyled>
     </>
   );

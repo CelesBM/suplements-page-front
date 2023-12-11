@@ -46,7 +46,7 @@ export const HeroContainerStyled = styled.section`
 
   @media (min-width: 700px) {
     p {
-      font-size: 17px;
+      font-size: 16px;
       line-height: 25px;
     }
   }
@@ -59,7 +59,7 @@ export const HeroContainerStyled = styled.section`
 
   @media (min-width: 1000px) {
     p {
-      font-size: 20px;
+      font-size: 18px;
       line-height: 30px;
     }
   }
