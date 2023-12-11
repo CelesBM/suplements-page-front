@@ -8,7 +8,7 @@ import { ButtonStyled } from "../../pages/Products/ProductsStyles";
 import { ModalBuy } from "../Modal/Modal";
 
 const CardProduct = ({ id, title, img, info, price, index }) => {
-  const isWideImage = index === 0 || index === 1; // Para dar estilos distintos a las dos primeras img
+  //const isWideImage = index === 0 || index === 1;
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
@@ -23,9 +23,11 @@ const CardProduct = ({ id, title, img, info, price, index }) => {
     }, 1000);
   };
 
+  //<ContainerProductStyled>{"className={isWideImage ? `wide-image` : ``}"}
+
   return (
     <>
-      <ContainerProductStyled className={isWideImage ? "wide-image" : ""}>
+      <ContainerProductStyled>
         <img src={img} alt={title} />
         <ProductInfoStyled>
           <h3>{title}</h3>
