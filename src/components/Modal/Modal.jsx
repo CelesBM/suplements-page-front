@@ -76,3 +76,20 @@ export const ModalSuccessBuy = () => {
     </ModalOverlayStyled>
   );
 };
+
+export const ModalContact = () => {
+  const [showContactModal, setShowContactModal] = useState(false);
+
+  return (
+    <ModalOverlayStyled>
+      <ModalStyled>
+        <ModalSpanStyled>
+          <ModalCloseStyled onClick={() => setShowContactModal(false)}>
+            &times;
+          </ModalCloseStyled>
+          <p>Mensaje enviado con éxito!</p>
+        </ModalSpanStyled>
+      </ModalStyled>
+    </ModalOverlayStyled>
+  );
+};

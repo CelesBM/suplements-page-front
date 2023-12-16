@@ -1,48 +1,121 @@
-import React from "react";
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import { FormContainerStyled } from "./ContactStyles";
-import { FormStyled } from "./ContactStyles";
-import { FormGroupStyled } from "./ContactStyles";
-import { LabelStyled } from "./ContactStyles";
-import { InputStyled } from "./ContactStyles";
-import { TextAreaStyled } from "./ContactStyles";
-import { ButtonStyled } from "./ContactStyles";
-import { motion } from "framer-motion";
+import { ModalContact } from "../../components/Modal/Modal";
+import {
+  FormContainerStyled,
+  FormStyled,
+  FormGroupStyled,
+  LabelStyled,
+  InputStyled,
+  TextAreaStyled,
+  ButtonStyled,
+  ErrorStyled,
+} from "./ContactStyles";
 
 const Contact = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [showContactModal, setShowContactModal] = useState(false);
+  const validationSchema = Yup.object({
+    name: Yup.string().trim().required("* Campo obligatorio"),
+    lastname: Yup.string().trim().required("* Campo obligatorio"),
+    email: Yup.string()
+      .email("* Correo electrónico inválido")
+      .required("* Campo obligatorio"),
+    issue: Yup.string()
+      .max(200, "* No puede utilizar más de 200 caracteres")
+      .required("* Campo obligatorio"),
+  });
+
+  const initialValues = {
+    name: "",
+    lastname: "",
+    email: "",
+    issue: "",
   };
+
+  const onSubmit = (values, { resetForm }) => {
+    console.log(values);
+    setShowContactModal(true);
+    setTimeout(() => {
+      setShowContactModal(false);
+    }, 2000);
+    resetForm();
+  };
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
 
   return (
     <>
       <Header />
       <FormContainerStyled>
         <h3>Contacto</h3>
-        <FormStyled onSubmit={handleSubmit}>
+        <FormStyled onSubmit={formik.handleSubmit}>
           <FormGroupStyled>
-            <LabelStyled htmlFor="nombre">Nombre:</LabelStyled>
-            <InputStyled type="text" id="nombre" name="nombre" required />
+            <LabelStyled htmlFor="name">Nombre:</LabelStyled>
+            <InputStyled
+              type="text"
+              id="name"
+              name="name"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.name}
+            />
+            {formik.touched.name && formik.errors.name ? (
+              <ErrorStyled>{formik.errors.name}</ErrorStyled>
+            ) : null}
           </FormGroupStyled>
           <FormGroupStyled>
-            <LabelStyled htmlFor="apellido">Apellido:</LabelStyled>
-            <InputStyled type="text" id="apellido" name="apellido" required />
+            <LabelStyled htmlFor="lastname">Apellido:</LabelStyled>
+            <InputStyled
+              type="text"
+              id="lastname"
+              name="lastname"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.lastname}
+            />
+            {formik.touched.lastname && formik.errors.lastname ? (
+              <ErrorStyled>{formik.errors.lastname}</ErrorStyled>
+            ) : null}
           </FormGroupStyled>
           <FormGroupStyled>
             <LabelStyled htmlFor="email">Email:</LabelStyled>
-            <InputStyled type="email" id="email" name="email" required />
+            <InputStyled
+              type="email"
+              id="email"
+              name="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <ErrorStyled>{formik.errors.email}</ErrorStyled>
+            ) : null}
           </FormGroupStyled>
           <FormGroupStyled>
-            <LabelStyled htmlFor="asunto">Asunto:</LabelStyled>
-            <TextAreaStyled id="asunto" name="asunto" rows="4" required />
+            <LabelStyled htmlFor="issue">Asunto:</LabelStyled>
+            <TextAreaStyled
+              type="textarea"
+              id="issue"
+              name="issue"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.issue}
+            />
+            {formik.touched.issue && formik.errors.issue ? (
+              <ErrorStyled>{formik.errors.issue}</ErrorStyled>
+            ) : null}
           </FormGroupStyled>
-          <motion.div whileTap={{ scale: 1.3 }} whileHover={{ scale: 1.1 }}>
-            <ButtonStyled type="submit">Enviar</ButtonStyled>
-          </motion.div>
+
+          <ButtonStyled type="submit">Enviar</ButtonStyled>
         </FormStyled>
+        {showContactModal && <ModalContact />}
       </FormContainerStyled>
-      <Footer />
     </>
   );
 };

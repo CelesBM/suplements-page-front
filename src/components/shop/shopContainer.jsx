@@ -26,6 +26,8 @@ import {
   ModalSuccessBuy,
 } from "../Modal/Modal";
 
+const productsLS = JSON.parse(localStorage.getItem("products")) || [];
+
 const ShopContainer = ({ isOpen }) => {
   const [showModal, setShowModal] = useState(false);
   const [showEmptyCartModal, setShowEmptyCartModal] = useState(false);
@@ -34,6 +36,13 @@ const ShopContainer = ({ isOpen }) => {
   const [removedProductTitle, setRemovedProductTitle] = useState(""); // Para almacenar el título del producto eliminado
   const shopItems = useSelector((state) => state.shop.shopItems);
   const dispatch = useDispatch();
+
+  // Obtener datos del localStorage al cargar el componente
+  useEffect(() => {
+    const productsLS = JSON.parse(localStorage.getItem("products")) || [];
+    // Actualizar el estado con los datos del localStorage
+    // dispatch(actualizarEstadoConLocalStorage(productsLS));
+  }, []);
 
   // Para incrementar la cantidad:
   const handleIncrement = (product) => {
@@ -77,11 +86,37 @@ const ShopContainer = ({ isOpen }) => {
   };
 
   const handleBuy = () => {
+    // Generar un identificador único para esta compra (por ejemplo, usando un timestamp)
+    const purchaseId = Date.now().toString(); // Timestamp como ID único
+    const purchaseData = {
+      id: purchaseId,
+      items: shopItems, // Los productos de esta compra
+    };
+
+    // Obtener compras anteriores del localStorage o un array vacío
+    const previousPurchases =
+      JSON.parse(localStorage.getItem("purchases")) || [];
+
+    // Agregar la nueva compra a las compras anteriores
+    previousPurchases.push(purchaseData);
+
+    // Guardar en el localStorage las compras anteriores junto con la nueva
+    localStorage.setItem("purchases", JSON.stringify(previousPurchases));
+
+    // Limpiar el carrito después de la compra
     dispatch(clearShop());
-    setShowPurchaseModal(true); // Mostrar el modal al realizar la compra
+
+    // Mostrar el modal al realizar la compra
+    setShowPurchaseModal(true);
+
     setTimeout(() => {
       setShowPurchaseModal(false);
     }, 1000);
+  };
+
+  // Función para actualizar el localStorage con los datos del carrito
+  const actualizarLocalStorage = () => {
+    localStorage.setItem("products", JSON.stringify(shopItems));
   };
 
   return (
@@ -127,7 +162,7 @@ const ShopContainer = ({ isOpen }) => {
         <ButtonStyled onClick={handleClearShop}>Vaciar carrito </ButtonStyled>
       )}
       {shopItems.length > 0 && (
-        <ButtonStyled onClick={handleBuy}>Comprar </ButtonStyled>
+        <ButtonStyled onClick={handleBuy}>Comprar</ButtonStyled>
       )}
 
       {showEmptyCartModal && <ModalRemoveAllProducts />}

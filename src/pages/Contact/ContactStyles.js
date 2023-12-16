@@ -5,7 +5,7 @@ export const FormContainerStyled = styled.div`
   margin: auto;
 
   h3 {
-    margin-top: 100px;
+    margin: 90px 0px 40px 0px;
     font-size: 18px;
     color: #efb810;
     text-align: center;
@@ -22,9 +22,9 @@ export const FormContainerStyled = styled.div`
 
   @media (min-width: 768px) {
     h3 {
-      margin-top: 150px;
+      margin-top: 130px;
       padding: 18px 26px;
-      font-size: 24px;
+      font-size: 22px;
     }
   }
 `;
@@ -40,20 +40,28 @@ export const FormGroupStyled = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+  gap: 13px;
+
+  @media (min-width: 768px) {
+    gap: 20px;
+  }
 `;
 
 export const LabelStyled = styled.label`
   color: #efb810;
-  margin-bottom: 5px;
   text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   width: 80px;
   padding: 5px;
 
+  @media (min-width: 400px) {
+    font-size: 14px;
+  }
+
   @media (min-width: 768px) {
-    margin-bottom: 10px;
-    font-size: 16px;
+    margin-bottom: 5px;
+    font-size: 15px;
   }
 
   @media (min-width: 1020px) {
@@ -62,11 +70,22 @@ export const LabelStyled = styled.label`
 `;
 
 export const InputStyled = styled.input`
-  width: 280px;
+  font-size: 13px;
+  color: #575748;
+  font-weight: bold;
+  width: 260px;
   border-radius: 4px;
   padding: 8px;
   background-color: #131311;
   box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.1);
+
+  &:focus {
+    background-color: #1e1e1e;
+  }
+
+  @media (min-width: 400px) {
+    width: 280px;
+  }
 
   @media (min-width: 500px) {
     width: 350px;
@@ -87,12 +106,21 @@ export const InputStyled = styled.input`
 `;
 
 export const TextAreaStyled = styled.textarea`
-  width: 280px;
+  color: #575748;
+  font-weight: bold;
+  width: 260px;
   border-radius: 4px;
   padding: 8px;
   background-color: #131311;
   box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.1);
 
+  &:focus {
+    background-color: #1e1e1e;
+  }
+
+  @media (min-width: 400px) {
+    width: 280px;
+  }
   @media (min-width: 500px) {
     width: 350px;
   }
@@ -121,7 +149,7 @@ export const ButtonStyled = styled.button`
   text-align: center;
   box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  margin-bottom: 50px;
+  margin-top: 30px;
 
   @media (min-width: 500px) {
     padding: 15px 50px;
@@ -141,4 +169,9 @@ export const ButtonStyled = styled.button`
     margin-top: 30px;
     padding: 20px 130px;
   }
+`;
+
+export const ErrorStyled = styled.div`
+  color: #d7ae2f;
+  font-size: 10px;
 `;

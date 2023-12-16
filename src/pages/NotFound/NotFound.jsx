@@ -1,11 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { NotFoundContainerStyled } from "./NotFoundStyles";
+import { ButtonStyled } from "../Contact/ContactStyles";
 
 function NotFound() {
   return (
     <>
-      <div>
-        <h1>Not found</h1>
-      </div>
+      <NotFoundContainerStyled>
+        <h1>Ups! Página no encontrada</h1>
+        <img
+          src="https://e1.pxfuel.com/desktop-wallpaper/712/957/desktop-wallpaper-mike-wazowski-surprised-full-id-1485.jpg"
+          alt="Notfound"
+        />
+        <Link to="/Home">
+          <ButtonStyled>Volver a la pagina principal</ButtonStyled>
+        </Link>
+      </NotFoundContainerStyled>
     </>
   );
 }
