@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import { AboutContainerStyled } from "./AboutStyles";
-import { ImageContainerStyled } from "./AboutStyles";
+import { AboutContainerStyled, ImageContainerStyled } from "./AboutStyles";
 import Footer from "../../components/Footer/Footer";
 
 const About = () => {

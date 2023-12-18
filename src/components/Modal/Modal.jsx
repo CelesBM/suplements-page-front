@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   ModalOverlayStyled,
   ModalStyled,
@@ -9,6 +8,7 @@ import {
   ModalRemoveStyled,
 } from "./ModalStyles";
 
+// Comprar en la sección Products:
 export const ModalBuy = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -26,6 +26,7 @@ export const ModalBuy = () => {
   );
 };
 
+// Remover con ícono "basura":
 export const ModalRemoveOneProduct = () => {
   const [showProductRemovedModal, setShowProductRemovedModal] = useState(false);
 
@@ -43,6 +44,7 @@ export const ModalRemoveOneProduct = () => {
   );
 };
 
+// Vaciar el carrito:
 export const ModalRemoveAllProducts = () => {
   const [showEmptyCartModal, setShowEmptyCartModal] = useState(false);
 
@@ -60,6 +62,7 @@ export const ModalRemoveAllProducts = () => {
   );
 };
 
+// Finalizar compra:
 export const ModalSuccessBuy = () => {
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
@@ -77,6 +80,7 @@ export const ModalSuccessBuy = () => {
   );
 };
 
+// Mensaje enviado en la seccion Contact:
 export const ModalContact = () => {
   const [showContactModal, setShowContactModal] = useState(false);
 

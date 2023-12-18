@@ -7,7 +7,7 @@ import {
   MotionDivStyled,
 } from "../Header/HeaderStyles";
 
-// Menú desplegable del menú hamburguesa:
+// Menú desplegable del menú mobile:
 
 export const HamburguerMenu = () => {
   const { isMenuOpen, toggleMenu } = useAppMenuContext(); // Context para abrir el menú hamburguesa

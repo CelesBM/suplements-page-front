@@ -7,8 +7,8 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-family: "Montserrat", sans-serif;
   }
+  
   body {
     background-color: #131311;
-    
   }
 `;

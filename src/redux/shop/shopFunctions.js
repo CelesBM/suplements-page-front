@@ -1,4 +1,5 @@
 //Agregar un producto al carrito:
+
 export const addProductToShop = (shopItems, product) => {
   const productAdded = shopItems.find((item) => item.id === product.id);
 

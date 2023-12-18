@@ -26,7 +26,6 @@ const Products = () => {
   }, [dispatch]);
 
   // Filtra por categoria:
-
   const handleFilterByCategory = (category, product) => {
     dispatch(filterProductsByCategory(category));
     setActiveCategory(category);
@@ -37,7 +36,6 @@ const Products = () => {
     <>
       <ContainerSectionProductsStyled>
         <Header />
-
         <ContainerCategoriesStyled>
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonCategoriesStyled

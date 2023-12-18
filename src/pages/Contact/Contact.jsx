@@ -16,6 +16,8 @@ import {
 
 const Contact = () => {
   const [showContactModal, setShowContactModal] = useState(false);
+
+  // Validación de los campos con Yup:
   const validationSchema = Yup.object({
     name: Yup.string().trim().required("* Campo obligatorio"),
     lastname: Yup.string().trim().required("* Campo obligatorio"),
@@ -27,6 +29,7 @@ const Contact = () => {
       .required("* Campo obligatorio"),
   });
 
+  // Valores iniciales:
   const initialValues = {
     name: "",
     lastname: "",
@@ -34,6 +37,7 @@ const Contact = () => {
     issue: "",
   };
 
+  // Modal al enviar el mensaje:
   const onSubmit = (values, { resetForm }) => {
     console.log(values);
     setShowContactModal(true);
@@ -43,6 +47,7 @@ const Contact = () => {
     resetForm();
   };
 
+  // Uso formik:
   const formik = useFormik({
     initialValues,
     validationSchema,

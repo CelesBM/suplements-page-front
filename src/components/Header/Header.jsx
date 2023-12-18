@@ -58,7 +58,6 @@ const Header = () => {
               <IconStyled>
                 <IoIosHome />
               </IconStyled>
-
               <LinkStyled to="/Home">
                 <SpanStyled>Home</SpanStyled>
               </LinkStyled>
@@ -72,7 +71,6 @@ const Header = () => {
               <IconStyled>
                 <IoFitnessSharp />
               </IconStyled>
-
               <LinkStyled to="/About">
                 <SpanStyled>Sobre mí</SpanStyled>
               </LinkStyled>
@@ -107,7 +105,6 @@ const Header = () => {
           <IconStyled onClick={handleShopToggle}>
             <IconLength />
           </IconStyled>
-
           <HamburguerStyled onClick={handleMenuToggle}>
             <motion.div whileTap={{ scale: 1.2 }}>
               <BiMenuAltRight />

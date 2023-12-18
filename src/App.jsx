@@ -1,7 +1,4 @@
 import React from "react";
-//import { Provider } from "react-redux";
-//import { store } from "./redux/store/store";
-import "./App.css";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { ContextProvider } from "./Context/ContextMenu";
 import { ShopContextProvider } from "./Context/ContextShop";
@@ -15,7 +12,6 @@ function App() {
           <Router />
         </ShopContextProvider>
       </ContextProvider>
-
       <GlobalStyles />
     </>
   );

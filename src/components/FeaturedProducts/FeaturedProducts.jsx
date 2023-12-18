@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ContainerProductsStyled } from "./FeaturedProductsStyles";
-import { ProductsStyled } from "./FeaturedProductsStyles";
-import { ProductStyled } from "./FeaturedProductsStyles";
-import { InfoProductStyled } from "./FeaturedProductsStyles";
-import { ButtonProductStyled } from "./FeaturedProductsStyles";
+import {
+  ContainerProductsStyled,
+  ProductsStyled,
+  ProductsStyled,
+  InfoProductStyled,
+  ButtonProductStyled,
+} from "./FeaturedProductsStyles";
+
+// Productos destacados que se encuentran en la sección HOME
 
 const FeaturedProducts = () => {
   return (
@@ -15,7 +19,7 @@ const FeaturedProducts = () => {
           <ProductStyled>
             <img
               src="https://i0.wp.com/www.htn.com.ar/wp-content/uploads/2020/06/htn-pro-xt-gold.png?fit=1024%2C1280&ssl=1"
-              alt=""
+              alt="HTN-pro-xt-gold"
             />
             <InfoProductStyled>
               <h5>$5000</h5>
@@ -25,7 +29,7 @@ const FeaturedProducts = () => {
           <ProductStyled>
             <img
               src="https://www.htn.com.ar/wp-content/uploads/2020/08/htn-xplode-creatina.png"
-              alt=""
+              alt="HTN-creatina"
             />
             <InfoProductStyled>
               <h5>$13000</h5>
@@ -35,7 +39,7 @@ const FeaturedProducts = () => {
           <ProductStyled>
             <img
               src="https://www.htn.com.ar/wp-content/uploads/2020/08/htn-xplode-bcaa-pack-micronized.png"
-              alt=""
+              alt="HTN-bcaa"
             />
             <InfoProductStyled>
               <h5>$4000</h5>

@@ -37,10 +37,7 @@ const shopSlice = createSlice({
     },
     finishPurchase: (state) => {
       state.shopItems = [];
-      //Cuando se complete la compra, también deberías limpiar el localStorage para vaciar el carrito y restablecerlo para futuras compras.
-      //localStorage.removeItem("products");
     },
-    // Me falta finalizar la compra
   },
 });
 

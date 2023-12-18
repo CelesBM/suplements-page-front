@@ -11,20 +11,20 @@ export const ContainerProductsStyled = styled.section`
   padding: 50px 30px;
 
   h3 {
+    font-size: 14px;
+    color: #efb810;
+    text-align: center;
     background-color: #131311;
     border-color: #575652;
     border-radius: 1rem;
     padding: 10px 16px;
-    font-size: 14px;
-    color: #efb810;
-    text-align: center;
     box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
   }
 
   @media (min-width: 400px) {
     h3 {
-      padding: 14px 20px;
       font-size: 15px;
+      padding: 14px 20px;
     }
   }
 
@@ -36,8 +36,8 @@ export const ContainerProductsStyled = styled.section`
 
   @media (min-width: 748px) {
     h3 {
-      padding: 18px 26px;
       font-size: 18px;
+      padding: 18px 26px;
     }
   }
 `;
@@ -57,9 +57,9 @@ export const ProductsStyled = styled.div`
 `;
 
 export const ProductStyled = styled.div`
-  background-color: #131311;
   width: 200px;
   height: 250px;
+  background-color: #131311;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
