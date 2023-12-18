@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import { ModalContact } from "../../components/Modal/Modal";
 import {
   FormContainerStyled,
@@ -116,11 +118,13 @@ const Contact = () => {
               <ErrorStyled>{formik.errors.issue}</ErrorStyled>
             ) : null}
           </FormGroupStyled>
-
-          <ButtonStyled type="submit">Enviar</ButtonStyled>
+          <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
+            <ButtonStyled type="submit">Enviar</ButtonStyled>
+          </motion.div>
         </FormStyled>
         {showContactModal && <ModalContact />}
       </FormContainerStyled>
+      <Footer />
     </>
   );
 };

@@ -52,6 +52,7 @@ export const ContainerCategoriesStyled = styled.div`
 `;
 
 export const ButtonCategoriesStyled = styled.button`
+  cursor: pointer;
   background-color: #131311;
   border: none;
   border-radius: 4px;
@@ -170,6 +171,7 @@ export const ProductInfoStyled = styled.div`
 `;
 
 export const ButtonStyled = styled.button`
+  cursor: pointer;
   background-color: #131311;
   border: none;
   border-radius: 1rem;

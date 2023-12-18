@@ -73,7 +73,7 @@ export const ModalSuccessBuy = () => {
           <ModalCloseStyled onClick={() => setShowPurchaseModal(false)}>
             &times;
           </ModalCloseStyled>
-          <p>Compra finalizada</p>
+          <p>Compra finalizada con éxito!</p>
         </ModalSpanStyled>
       </ModalStyled>
     </ModalOverlayStyled>
@@ -91,7 +91,9 @@ export const ModalContact = () => {
           <ModalCloseStyled onClick={() => setShowContactModal(false)}>
             &times;
           </ModalCloseStyled>
-          <p>Mensaje enviado con éxito!</p>
+          <p>
+            Mensaje enviado con éxito! <br /> En estos días será respondido
+          </p>
         </ModalSpanStyled>
       </ModalStyled>
     </ModalOverlayStyled>

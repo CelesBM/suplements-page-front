@@ -7,7 +7,7 @@ export const AboutContainerStyled = styled.section`
   justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-top: 60px;
+  margin: 60px 0px 50px 0px;
   padding: 20px 30px;
 
   @media (min-width: 500px) {
@@ -16,7 +16,7 @@ export const AboutContainerStyled = styled.section`
   }
 
   @media (min-width: 768px) {
-    margin-top: 120px;
+    margin: 120px 0px 100px 0px;
   }
 
   @media (min-width: 1020px) {
@@ -37,27 +37,25 @@ export const AboutContainerStyled = styled.section`
 
   @media (min-width: 500px) {
     p {
-      font-size: 15px;
+      font-size: 14px;
       line-height: 25px;
     }
   }
 
   @media (min-width: 700px) {
     p {
-      font-size: 17px;
+      font-size: 15px;
       line-height: 25px;
     }
   }
 
   @media (min-width: 1000px) {
     p {
-      font-size: 20px;
+      font-size: 16px;
       line-height: 30px;
     }
   }
 `;
-
-export const TextContainerStyled = styled.div``;
 
 export const ImageContainerStyled = styled.div`
   display: flex;

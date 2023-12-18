@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   ContainerProductsStyled,
   ProductsStyled,
@@ -48,7 +49,9 @@ const FeaturedProducts = () => {
           </ProductStyled>
         </ProductsStyled>
         <Link to="/products">
-          <ButtonProductStyled>Ver todos los productos</ButtonProductStyled>
+          <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
+            <ButtonProductStyled>Ver todos los productos</ButtonProductStyled>
+          </motion.div>
         </Link>
       </ContainerProductsStyled>
     </>

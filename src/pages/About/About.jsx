@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import { AboutContainerStyled, ImageContainerStyled } from "./AboutStyles";
 import Footer from "../../components/Footer/Footer";
@@ -26,9 +27,27 @@ const About = () => {
           Qué estás esperando? No te dejes para después.
         </p>
         <ImageContainerStyled>
-          <img src="about.jpeg" alt="About1" />
-          <img src="about2.jpeg" alt="About2" />
-          <img src="about3.jpeg" alt="About3" />
+          <motion.img
+            src="about.jpeg"
+            alt="About1"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.5 }}
+          />
+          <motion.img
+            src="about2.jpeg"
+            alt="About2"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 1.2 }}
+          />
+          <motion.img
+            src="about3.jpeg"
+            alt="About3"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 1.7 }}
+          />
         </ImageContainerStyled>
       </AboutContainerStyled>
       <Footer />

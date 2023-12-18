@@ -206,12 +206,13 @@ export const LinkHamburguerStyled = styled(Link)`
   color: #9e7b13;
 `;
 
-export const LinkHamburguerContainerStyled = styled.div`
+export const LinkHamburguerContainerStyled = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   width: 100%;
+  border-bottom-left-radius: 20px;
   position: absolute;
   top: 70px;
   right: 0px;

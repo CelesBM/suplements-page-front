@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useAppShopContext } from "../../Context/ContextShop";
 import {
   ShopContainerStyled,
   ShopProductsContainerStyled,
@@ -8,6 +9,7 @@ import {
   InfoStyled,
   IconStyled,
   ContainerButtonsStyled,
+  ShopTotalInfoStyled,
   TotalPriceStyled,
   ButtonStyled,
   SpanStyled,
@@ -28,6 +30,7 @@ import {
 // Carrito de compras:
 
 const ShopContainer = ({ isOpen }) => {
+  const { isShopOpen, toggleShop } = useAppShopContext();
   const [showModal, setShowModal] = useState(false);
   const [showEmptyCartModal, setShowEmptyCartModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
@@ -43,6 +46,10 @@ const ShopContainer = ({ isOpen }) => {
 
   // Para disminuir la cantidad:
   const handleDecrement = (product) => {
+    if (product.quantity === 1) {
+      handleRemove(product);
+      return;
+    }
     dispatch(decrementQuantity(product));
   };
 
@@ -97,7 +104,12 @@ const ShopContainer = ({ isOpen }) => {
   };
 
   return (
-    <ShopContainerStyled isOpen={isOpen}>
+    <ShopContainerStyled
+      isOpen={isOpen}
+      initial={{ left: "100%" }}
+      animate={{ left: isShopOpen ? "20%" : "50%" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
       <h3>Carrito de Compras</h3>
       <ShopProductsContainerStyled>
         {shopItems.length > 0 ? (
@@ -128,18 +140,20 @@ const ShopContainer = ({ isOpen }) => {
           <p className="empty-shop">No hay elementos en el carrito</p>
         )}
       </ShopProductsContainerStyled>
-      <TotalPriceStyled>
-        {shopItems.length > 0 && <p>Total a pagar: ${handleTotalPrice()}</p>}{" "}
-      </TotalPriceStyled>
-      {showProductRemovedModal && <ModalRemoveOneProduct />}
-      {shopItems.length > 0 && (
-        <ButtonStyled onClick={handleClearShop}>Vaciar carrito </ButtonStyled>
-      )}
-      {shopItems.length > 0 && (
-        <ButtonStyled onClick={handleBuy}>Finalizar compra</ButtonStyled>
-      )}
-      {showEmptyCartModal && <ModalRemoveAllProducts />}
-      {showPurchaseModal && <ModalSuccessBuy />}
+      <ShopTotalInfoStyled>
+        <TotalPriceStyled>
+          {shopItems.length > 0 && <p>Total a pagar: ${handleTotalPrice()}</p>}{" "}
+        </TotalPriceStyled>
+        {showProductRemovedModal && <ModalRemoveOneProduct />}
+        {shopItems.length > 0 && (
+          <ButtonStyled onClick={handleClearShop}>Vaciar carrito </ButtonStyled>
+        )}
+        {shopItems.length > 0 && (
+          <ButtonStyled onClick={handleBuy}>Finalizar compra</ButtonStyled>
+        )}
+        {showEmptyCartModal && <ModalRemoveAllProducts />}
+        {showPurchaseModal && <ModalSuccessBuy />}
+      </ShopTotalInfoStyled>
     </ShopContainerStyled>
   );
 };

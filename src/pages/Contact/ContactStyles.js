@@ -3,6 +3,15 @@ import styled from "styled-components";
 export const FormContainerStyled = styled.div`
   max-width: 400px;
   margin: auto;
+  margin-bottom: 70px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 110px;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 130px;
+  }
 
   h3 {
     margin: 90px 0px 40px 0px;

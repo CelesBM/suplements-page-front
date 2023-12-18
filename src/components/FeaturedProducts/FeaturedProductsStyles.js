@@ -144,6 +144,7 @@ export const InfoProductStyled = styled.div`
 `;
 
 export const ButtonProductStyled = styled.button`
+  cursor: pointer;
   background-color: #131311;
   border: none;
   border-radius: 1rem;

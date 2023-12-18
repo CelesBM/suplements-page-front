@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const ShopContainerStyled = styled.div`
+export const ShopContainerStyled = styled(motion.div)`
   position: fixed;
   top: 70px;
   right: 0px;
-  width: 200px;
+  width: 80%;
   border-bottom-left-radius: 20px;
   max-height: 400px;
   overflow-y: auto; // Barra de desplazamiento vertical del carrito.
@@ -32,19 +33,15 @@ export const ShopContainerStyled = styled.div`
   gap: 10px;
 
   @media (min-width: 400px) {
-    width: 250px;
     padding-right: 25px;
   }
 
   @media (min-width: 500px) {
-    width: 350px;
-    padding-right: 35px;
     gap: 20px;
   }
 
   @media (min-width: 768px) {
     top: 100px;
-    width: 450px;
     padding-right: 50px;
   }
 
@@ -58,12 +55,6 @@ export const ShopContainerStyled = styled.div`
   @media (min-width: 450px) {
     h3 {
       font-size: 15px;
-    }
-  }
-
-  @media (min-width: 500px) {
-    h3 {
-      font-size: 16px;
     }
   }
 
@@ -102,6 +93,12 @@ export const ShopProductsContainerStyled = styled.div`
   @media (min-width: 500px) {
     gap: 40px;
   }
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
 `;
 
 export const ProductContainerStyled = styled.div`
@@ -134,7 +131,7 @@ export const SpanStyled = styled.div`
   }
 
   h4 {
-    color: #efb810;
+    color: #9e7b13;
   }
 
   @media (min-width: 450px) {
@@ -185,8 +182,12 @@ export const ContainerButtonsStyled = styled.div`
     border-radius: 1rem;
     padding: 0px 4px;
     font-size: 14px;
-    color: #efb810;
+    color: #9e7b13;
     text-align: center;
+
+    &:hover {
+      color: #efb810;
+    }
   }
 
   @media (min-width: 450px) {
@@ -228,6 +229,10 @@ export const IconStyled = styled.div`
   color: #9e7b13;
   font-size: 20px;
 
+  &:hover {
+    color: #efb810;
+  }
+
   @media (min-width: 450px) {
     font-size: 22px;
   }
@@ -235,6 +240,13 @@ export const IconStyled = styled.div`
   @media (min-width: 768px) {
     font-size: 25px;
   }
+`;
+
+export const ShopTotalInfoStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 `;
 
 export const TotalPriceStyled = styled.div`
@@ -262,9 +274,13 @@ export const ButtonStyled = styled.div`
   border-radius: 1rem;
   padding: 4px 10px;
   font-size: 12px;
-  color: #efb810;
+  color: #9e7b13;
   font-weight: bold;
   text-align: center;
+
+  &:hover {
+    color: #efb810;
+  }
 
   @media (min-width: 450px) {
     padding: 8px 12px;
