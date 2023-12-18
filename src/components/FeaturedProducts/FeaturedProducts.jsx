@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {
   ContainerProductsStyled,
   ProductsStyled,
-  ProductsStyled,
+  ProductStyled,
   InfoProductStyled,
   ButtonProductStyled,
 } from "./FeaturedProductsStyles";
