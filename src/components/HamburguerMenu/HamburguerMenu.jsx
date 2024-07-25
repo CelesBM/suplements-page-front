@@ -28,8 +28,8 @@ export const HamburguerMenu = () => {
       >
         <MotionDivStyled whileTap={{ scale: 1.3 }} whileHover={{ scale: 1.1 }}>
           <ItemHamburguerMenuStyled>
-            <LinkHamburguerStyled to="/Home" onClick={handleMenuLocation}>
-              Home
+            <LinkHamburguerStyled to="/Login" onClick={handleMenuLocation}>
+              Iniciar Sesión
             </LinkHamburguerStyled>
           </ItemHamburguerMenuStyled>
         </MotionDivStyled>

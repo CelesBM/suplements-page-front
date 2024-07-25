@@ -15,7 +15,7 @@ import {
   LinkStyled,
   MotionDivStyled,
 } from "./HeaderStyles";
-import { IoIosHome } from "react-icons/io";
+import { BsEnvelopeFill } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import { PiShoppingBagFill } from "react-icons/pi";
 import { BiMenuAltRight } from "react-icons/bi";
@@ -56,10 +56,10 @@ const Header = () => {
               whileHover={{ scale: 1.1 }}
             >
               <IconStyled>
-                <IoIosHome />
+                <BsFillPersonFill />
               </IconStyled>
-              <LinkStyled to="/Home">
-                <SpanStyled>Home</SpanStyled>
+              <LinkStyled to="/Login">
+                <SpanStyled>Iniciar Sesión</SpanStyled>
               </LinkStyled>
             </MotionDivStyled>
           </LinkContainerStyled>
@@ -95,7 +95,7 @@ const Header = () => {
               whileHover={{ scale: 1.1 }}
             >
               <IconStyled>
-                <BsFillPersonFill />
+                <BsEnvelopeFill />
               </IconStyled>
               <LinkStyled to="/Contact">
                 <SpanStyled>Contacto</SpanStyled>
