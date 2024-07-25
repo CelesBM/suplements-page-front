@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const RegisterContainerStyled = styled.div`
+export const CodeContainerStyled = styled.div`
   max-width: 400px;
   margin: auto;
   margin-bottom: 70px;
@@ -59,16 +60,17 @@ export const RegisterContainerStyled = styled.div`
   }
 `;
 
-export const RegisterStyled = styled.form`
+export const CodeStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
 `;
 
-export const RegisterGroupStyled = styled.div`
+export const CodeGroupStyled = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 15px;
   gap: 13px;
 
@@ -82,8 +84,7 @@ export const LabelStyled = styled.label`
   text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
   font-size: 13px;
   text-align: center;
-  width: 80px;
-  padding: 5px;
+  padding: 10px;
 
   @media (min-width: 400px) {
     font-size: 14px;
@@ -163,8 +164,13 @@ export const ButtonStyled = styled.button`
 
   @media (min-width: 1285px) {
     margin-top: 30px;
-    padding: 20px 130px;
+    padding: 20px 120px;
   }
+`;
+
+export const LinkStyled = styled(Link)`
+  text-decoration: none;
+  cursor: pointer;
 `;
 
 export const ErrorStyled = styled.div`

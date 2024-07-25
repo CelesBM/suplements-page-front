@@ -7,6 +7,7 @@ import Contact from "../pages/Contact/Contact";
 import NotFound from "../pages/NotFound/NotFound";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Code from "../pages/Code/Code";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
         <Route path="contact" element={<Contact />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/Verify" element={<Code />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
