@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useAppMenuContext } from "../../Context/ContextMenu";
@@ -26,6 +27,8 @@ import { HamburguerMenu } from "../HamburguerMenu/HamburguerMenu";
 const Header = () => {
   const { isMenuOpen, toggleMenu } = useAppMenuContext(); // Context para abrir el menú hamburguesa
   const { isShopOpen, toggleShop } = useAppShopContext(); // Context para abrir el carrito de compras
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
 
   const handleMenuToggle = () => {
     toggleMenu();
@@ -58,8 +61,11 @@ const Header = () => {
               <IconStyled>
                 <BsFillPersonFill />
               </IconStyled>
+
               <LinkStyled to="/Login">
-                <SpanStyled>Iniciar Sesión</SpanStyled>
+                <SpanStyled>
+                  {currentUser ? `${currentUser.user.name}` : "Inicia sesión"}
+                </SpanStyled>
               </LinkStyled>
             </MotionDivStyled>
           </LinkContainerStyled>
@@ -121,3 +127,16 @@ const Header = () => {
 };
 
 export default Header;
+
+//<IconStyled>
+//<BsFillPersonFill />
+//</IconStyled>
+//{currentUser ? (
+//  <SpanStyled>{currentUser.name}</SpanStyled> // Muestra el nombre del usuario
+
+//) : (
+//  <LinkStyled to="/Login">
+//    <SpanStyled>Iniciar Sesión</SpanStyled>
+//  </LinkStyled>
+//)}
+//</MotionDivStyled>

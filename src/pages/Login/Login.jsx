@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import useRedirect from "../../Redirect/useRedirect";
+import { useLocation } from "react-router-dom";
+import { loginUser } from "../../axios/axios-user";
+import { setCurrentUser } from "../../redux/user/UserSlice";
 import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -16,6 +21,9 @@ import {
 } from "./LoginStyles";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  useRedirect("/");
+
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -36,6 +44,19 @@ const Login = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
+    onSubmit: async (values) => {
+      const user = await loginUser(values.email, values.password);
+      console.log("Funciona, user:", user);
+      if (user) {
+        dispatch(
+          setCurrentUser({
+            //   ...user.usuario,
+            ...user,
+            token: user.token,
+          })
+        );
+      }
+    },
   });
 
   return (
@@ -43,7 +64,7 @@ const Login = () => {
       <Header />
       <LoginContainerStyled>
         <h3>Iniciar Sesión</h3>
-        <LoginStyled>
+        <LoginStyled onSubmit={formik.handleSubmit}>
           <LoginGroupStyled>
             <LabelStyled htmlFor="email">Email:</LabelStyled>
             <InputStyled
