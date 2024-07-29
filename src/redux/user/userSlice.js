@@ -10,10 +10,11 @@ const userSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     setCurrentUser: (state, action) => {
-      return {
+      state.currentUser = action.payload;
+      /* return {
         ...state, //no se si va
         currentUser: action.payload,
-      };
+      };*/
     },
     //nuevo
     clearUser: (state) => {

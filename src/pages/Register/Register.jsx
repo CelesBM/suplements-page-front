@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import useRedirect from "../../Redirect/useRedirect";
+import { useNavigate } from "react-router-dom";
+import { createUser } from "../../axios/axios-user";
 import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -11,10 +15,15 @@ import {
   LabelStyled,
   InputStyled,
   ButtonStyled,
+  LinkStyled,
   ErrorStyled,
 } from "./RegisterStyles";
+import { setCurrentUser } from "../../redux/user/UserSlice";
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
     name: Yup.string().trim().required("* Campo obligatorio"),
@@ -37,6 +46,27 @@ const Register = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const user = await createUser(
+          values.name,
+          values.email,
+          values.password
+        );
+        console.log("Funciona, user:", user);
+        if (user) {
+          dispatch(
+            setCurrentUser({
+              ...user,
+              token: user.token,
+            })
+          );
+          navigate("/Verify");
+        }
+      } catch (error) {
+        console.error("Error al crear el usuario:", error);
+      }
+    },
   });
 
   return (
@@ -44,7 +74,7 @@ const Register = () => {
       <Header />
       <RegisterContainerStyled>
         <h3>Crear usuario</h3>
-        <RegisterStyled>
+        <RegisterStyled onSubmit={formik.handleSubmit}>
           <RegisterGroupStyled>
             <LabelStyled htmlFor="name">Nombre:</LabelStyled>
             <InputStyled
@@ -76,7 +106,7 @@ const Register = () => {
           <RegisterGroupStyled>
             <LabelStyled htmlFor="name">Contraseña:</LabelStyled>
             <InputStyled
-              type="text"
+              type="password"
               id="password"
               name="password"
               onChange={formik.handleChange}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const RegisterContainerStyled = styled.div`
   max-width: 400px;
@@ -165,6 +166,11 @@ export const ButtonStyled = styled.button`
     margin-top: 30px;
     padding: 20px 130px;
   }
+`;
+
+export const LinkStyled = styled(Link)`
+  text-decoration: none;
+  cursor: pointer;
 `;
 
 export const ErrorStyled = styled.div`
