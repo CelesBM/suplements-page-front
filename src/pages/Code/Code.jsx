@@ -21,6 +21,7 @@ const Code = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user.currentUser);
+  console.log(currentUser);
 
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
@@ -48,7 +49,7 @@ const Code = () => {
         console.log("Datos inválidos:", currentUser, values.code);
         return;
       }
-      const user = await verifyUser(currentUser.email, values.code);
+      const user = await verifyUser(currentUser.user.email, values.code);
       console.log("Funciona, user:", user);
       dispatch(setVerified());
       navigate("/");
