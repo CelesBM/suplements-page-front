@@ -9,10 +9,12 @@ export const createUser = async (name, email, password) => {
       email,
       password,
     });
+    // Si la creación del usuario es exitosa, intentamos iniciar sesión
     const user = await loginUser(email, password);
     return user;
   } catch (error) {
-    return console.log(error.response.data.errors[0].msg);
+    // Lanza el error para que pueda ser manejado por el componente
+    throw error;
   }
 };
 

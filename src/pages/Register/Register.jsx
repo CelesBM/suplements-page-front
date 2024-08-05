@@ -23,6 +23,7 @@ import { setCurrentUser } from "../../redux/user/UserSlice";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState(""); // Nuevo estado para manejar el error
 
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
@@ -65,6 +66,12 @@ const Register = () => {
         }
       } catch (error) {
         console.error("Error al crear el usuario:", error);
+        if (error.response && error.response.data && error.response.data.msg) {
+          // Actualiza el estado con el mensaje de error recibido del backend
+          setError(error.response.data.msg);
+        } else {
+          setError("Usuario ya registrado");
+        }
       }
     },
   });
@@ -117,6 +124,8 @@ const Register = () => {
               <ErrorStyled>{formik.errors.password}</ErrorStyled>
             ) : null}
           </RegisterGroupStyled>
+          {error && <ErrorStyled>{error}</ErrorStyled>}{" "}
+          {/* Muestra el error aquí */}
           <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
             <ButtonStyled type="submit">Registrarse</ButtonStyled>
           </motion.div>
