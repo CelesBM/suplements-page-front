@@ -63,7 +63,7 @@ export const ModalRemoveAllProducts = () => {
 };
 
 // Finalizar compra:
-export const ModalSuccessBuy = () => {
+/*export const ModalSuccessBuy = () => {
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
   return (
@@ -78,7 +78,7 @@ export const ModalSuccessBuy = () => {
       </ModalStyled>
     </ModalOverlayStyled>
   );
-};
+};*/
 
 // Mensaje enviado en la seccion Contact:
 export const ModalContact = () => {

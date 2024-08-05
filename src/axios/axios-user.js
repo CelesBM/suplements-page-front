@@ -28,19 +28,6 @@ export const loginUser = async (email, password) => {
   }
 };
 
-/*export const verifyUser = async (email, code) => {
-  try {
-    const res = await axios.patch(`${DATABASE_URL}/auth/verify`, {
-      email,
-      code,
-    });
-    return res.data;
-  } catch (error) {
-    console.log(error);
-    return alert(error.response.data.msg) || "Error desconocido";
-  }
-};*/
-
 export const verifyUser = async (email, code) => {
   try {
     const res = await axios.patch(`${DATABASE_URL}/auth/verify`, {
@@ -60,6 +47,23 @@ export const verifyUser = async (email, code) => {
       // Error al configurar la solicitud
       alert("Error al configurar la solicitud");
     }
+    return null;
+  }
+};
+
+export const createOrder = async (orderData) => {
+  try {
+    const response = await fetch(`${DATABASE_URL}/orders/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": "your-auth-token", // Reemplaza con el token de autenticación actual
+      },
+      body: JSON.stringify(orderData),
+    });
+    return response;
+  } catch (error) {
+    console.error("Error:", error);
     return null;
   }
 };

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   shopItems: [], // Inicializa el carrito como un array vacío
+  purchaseData: null, //Almacena la información de la compra
 };
 
 const shopSlice = createSlice({
@@ -25,7 +26,7 @@ const shopSlice = createSlice({
       if (existingProduct && existingProduct.quantity > 1) {
         existingProduct.quantity -= 1;
       } else if (existingProduct && existingProduct.quantity === 1) {
-        state.shopItems = state.shopItems.filter((item) => item.id !== id);
+        state.shopItems = state.filter((item) => item.id !== id);
       }
     },
     removeProduct: (state, action) => {
@@ -35,8 +36,9 @@ const shopSlice = createSlice({
     clearShop: (state) => {
       state.shopItems = [];
     },
-    finishPurchase: (state) => {
-      state.shopItems = [];
+    finishPurchase: (state, action) => {
+      state.purchaseData = action.payload; //Guarda info de la compra
+      state.shopItems = []; //Vacía el carrito
     },
   },
 });

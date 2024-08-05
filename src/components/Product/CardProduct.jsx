@@ -11,7 +11,7 @@ import {
 
 // Render de cada producto de la sección PRODUCTS:
 
-const CardProduct = ({ id, title, img, info, price }) => {
+const CardProduct = ({ id, title, img, description, price }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
@@ -32,7 +32,7 @@ const CardProduct = ({ id, title, img, info, price }) => {
         <img src={img} alt={title} />
         <ProductInfoStyled>
           <h3>{title}</h3>
-          <h5>{info}</h5>
+          <h5>{description}</h5>
           <p>${price}</p>
           <motion.div whileTap={{ scale: 1.1 }}>
             <ButtonStyled onClick={handleAddToShop}>Comprar</ButtonStyled>

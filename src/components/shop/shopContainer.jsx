@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAppShopContext } from "../../Context/ContextShop";
+import { useNavigate } from "react-router-dom";
 import {
   ShopContainerStyled,
   ShopProductsContainerStyled,
@@ -20,16 +21,15 @@ import {
   decrementQuantity,
   removeProduct,
   clearShop,
+  finishPurchase,
 } from "../../redux/shop/shopSlice";
-import {
-  ModalRemoveOneProduct,
-  ModalRemoveAllProducts,
-  ModalSuccessBuy,
-} from "../Modal/Modal";
+import { ModalRemoveOneProduct, ModalRemoveAllProducts } from "../Modal/Modal";
+//Dentro de /modal saqué por ahora ModalSuccessBuy,} from "../Modal/Modal";
 
 // Carrito de compras:
 
 const ShopContainer = ({ isOpen }) => {
+  const navigate = useNavigate();
   const { isShopOpen, toggleShop } = useAppShopContext();
   const [showModal, setShowModal] = useState(false);
   const [showEmptyCartModal, setShowEmptyCartModal] = useState(false);
@@ -38,6 +38,7 @@ const ShopContainer = ({ isOpen }) => {
   const [removedProductTitle, setRemovedProductTitle] = useState("");
   const shopItems = useSelector((state) => state.shop.shopItems);
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   // Para incrementar la cantidad:
   const handleIncrement = (product) => {
@@ -81,13 +82,42 @@ const ShopContainer = ({ isOpen }) => {
   };
 
   // Para finalizar la compra:
-  const handleBuy = () => {
+  const handleBuy = async () => {
     // Generar un identificador único para esta compra (por ejemplo, usando un timestamp):
     const purchaseId = Date.now().toString(); // Identificador único para esta compra con Timestamp
     const purchaseData = {
-      id: purchaseId,
       items: shopItems,
+      price: handleTotalPrice(),
+      shippingCost: 1000, // Cambia esto si tienes un costo de envío calculado
+      total: handleTotalPrice(), // Total a pagar
+      shippingDetails: {
+        name: "", // Placeholder, se completará en la página de detalles de envío
+        cellphone: "",
+        location: "",
+        address: "",
+      },
     };
+
+    try {
+      const response = await fetch("http://127.0.0.1:8080/orders/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-token": currentUser.token, // Reemplaza con el token de autenticación actual
+        },
+        body: JSON.stringify(purchaseData),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        dispatch(finishPurchase({ id: data.data.id, items: shopItems }));
+        navigate("/ShippingDetails"); // Redirige a la página de detalles de envío
+      } else {
+        console.log(data.msg);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
     // Obtener compras anteriores del localStorage o un array vacío:
     const previousPurchases =
       JSON.parse(localStorage.getItem("purchases")) || [];
@@ -149,10 +179,10 @@ const ShopContainer = ({ isOpen }) => {
           <ButtonStyled onClick={handleClearShop}>Vaciar carrito </ButtonStyled>
         )}
         {shopItems.length > 0 && (
-          <ButtonStyled onClick={handleBuy}>Finalizar compra</ButtonStyled>
+          <ButtonStyled onClick={handleBuy}>Comenzar compra</ButtonStyled>
         )}
         {showEmptyCartModal && <ModalRemoveAllProducts />}
-        {showPurchaseModal && <ModalSuccessBuy />}
+        {/*showPurchaseModal && <ModalSuccessBuy />*/}
       </ShopTotalInfoStyled>
     </ShopContainerStyled>
   );
