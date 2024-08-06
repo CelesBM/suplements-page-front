@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { verifyUser } from "../../axios/axios-user";
 import { setVerified } from "../../redux/user/UserSlice";
@@ -20,8 +20,11 @@ import {
 const Code = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const user = location.state?.user;
   const currentUser = useSelector((state) => state.user.currentUser);
   console.log(currentUser);
+  const [error, setError] = React.useState(""); // Para manejar mensajes de error
 
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
@@ -36,35 +39,41 @@ const Code = () => {
 
   // Valores iniciales:
   const initialValues = {
-    email: "",
+    email: user?.email || "",
     code: "",
   };
 
+  // Uso formik:
   // Uso formik:
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      if (!currentUser || !values.code) {
-        console.log("Datos inválidos:", currentUser, values.code);
+      if (!values.code) {
+        console.log("Código de verificación no proporcionado");
         return;
       }
-      const user = await verifyUser(currentUser.user.email, values.code);
-      console.log("Funciona, user:", user);
-      dispatch(setVerified());
-      navigate("/");
+      try {
+        const result = await verifyUser(values.email, values.code);
+        console.log("Funciona, user:", result);
+        dispatch(setVerified());
+        navigate("/"); // Redirige a la página principal después de la verificación
+      } catch (error) {
+        console.error("Error en la verificación:", error);
+        setError("Error en la verificación. Inténtalo de nuevo.");
+      }
     },
   });
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser && !user) {
       console.log("¡No hay usuario actual!");
       navigate("/login"); // Redirige al login si no hay usuario
-    } else if (currentUser.verified) {
+    } else if (currentUser && currentUser.verified) {
       console.log("Usuario ya verificado");
       navigate("/"); // Redirige a la página principal si el usuario ya está verificado
     }
-  }, [currentUser, navigate]);
+  }, [currentUser, user, navigate]);
 
   return (
     <>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import useRedirect from "../../Redirect/useRedirect";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { loginUser } from "../../axios/axios-user";
 import { setCurrentUser } from "../../redux/user/UserSlice";
@@ -22,6 +23,8 @@ import {
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [error, setError] = useState(""); // Nuevo estado para manejar el error
   useRedirect("/");
 
   // Validación de los campos con Yup:
@@ -41,24 +44,41 @@ const Login = () => {
   };
 
   // Uso formik:
+  // Uso formik:
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      const user = await loginUser(values.email, values.password);
-      console.log("Funciona, user:", user);
-      if (user) {
-        dispatch(
-          setCurrentUser({
-            //   ...user.usuario,
-            ...user,
-            token: user.token,
-          })
-        );
+      try {
+        const user = await loginUser(values.email, values.password);
+        console.log(user);
+        console.log(user.user.verified);
+        if (user) {
+          if (!user.user.verified) {
+            // Si el usuario no está verificado
+            setError("Usuario no verificado. Por favor verifica tu correo.");
+            navigate("/Verify", { state: { user: user.user } });
+          } else {
+            // Si el usuario está verificado
+            dispatch(
+              setCurrentUser({
+                ...user,
+                token: user.token,
+              })
+            );
+            navigate("/"); // Redirige a la página principal o a donde desees
+          }
+        }
+      } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+        if (error.response && error.response.data && error.response.data.msg) {
+          setError(error.response.data.msg);
+        } else {
+          setError("Error desconocido");
+        }
       }
     },
   });
-
   return (
     <>
       <Header />
@@ -93,6 +113,17 @@ const Login = () => {
               <ErrorStyled>{formik.errors.password}</ErrorStyled>
             ) : null}
           </LoginGroupStyled>
+          {error && (
+            <div>
+              <ErrorStyled>{error}</ErrorStyled>
+              {error ===
+                "Usuario no verificado. Por favor verifica tu correo." && (
+                <ButtonStyled onClick={() => navigate("/Verify")}>
+                  Verificar mi cuenta
+                </ButtonStyled>
+              )}
+            </div>
+          )}
           <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
             <ButtonStyled type="submit">Ingresar</ButtonStyled>
           </motion.div>
