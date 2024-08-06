@@ -99,3 +99,14 @@ export const ModalContact = () => {
     </ModalOverlayStyled>
   );
 };
+
+export const ModalVerification = () => (
+  <ModalOverlayStyled>
+    <ModalStyled>
+      <ModalSpanStyled>
+        <ModalCloseStyled>&times;</ModalCloseStyled>
+        <p>Usuario verificado! por favor inicie sesión.</p>
+      </ModalSpanStyled>
+    </ModalStyled>
+  </ModalOverlayStyled>
+);

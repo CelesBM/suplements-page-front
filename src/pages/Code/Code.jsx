@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { verifyUser } from "../../axios/axios-user";
 import { setVerified } from "../../redux/user/UserSlice";
+import { ModalVerification } from "../../components/Modal/Modal";
 import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -15,6 +16,7 @@ import {
   LabelStyled,
   InputStyled,
   ButtonStyled,
+  ErrorStyled,
 } from "./CodeStyles";
 
 const Code = () => {
@@ -23,8 +25,8 @@ const Code = () => {
   const location = useLocation();
   const user = location.state?.user;
   const currentUser = useSelector((state) => state.user.currentUser);
-  console.log(currentUser);
-  const [error, setError] = React.useState(""); // Para manejar mensajes de error
+  const [error, setError] = useState(""); // Para manejar mensajes de error
+  const [showVerifiedModal, setShowVerifiedModal] = useState(false); // Para manejar el modal
 
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
@@ -57,7 +59,16 @@ const Code = () => {
         const result = await verifyUser(values.email, values.code);
         console.log("Funciona, user:", result);
         dispatch(setVerified());
-        navigate("/"); // Redirige a la página principal después de la verificación
+        setShowVerifiedModal(true); // Mostrar el modal
+        setTimeout(() => {
+          setShowVerifiedModal(false);
+          navigate("/Login");
+        }, 1000); // Tiempo que aparece el modal
+        console.log(
+          "Estado de showVerifiedModal después de setShowVerifiedModal:",
+          showVerifiedModal
+        ); // Verificar el estado
+        //navigate("/"); // Redirige a la página principal después de la verificación
       } catch (error) {
         console.error("Error en la verificación:", error);
         setError("Error en la verificación. Inténtalo de nuevo.");
@@ -102,12 +113,20 @@ const Code = () => {
               onBlur={formik.handleBlur}
               value={formik.values.code}
             />
+            {error && <ErrorStyled>{error}</ErrorStyled>}{" "}
+            {/* Mostrar mensaje de error */}
           </CodeGroupStyled>
           <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
             <ButtonStyled type="submit">Verificar usuario</ButtonStyled>
           </motion.div>
         </CodeStyled>
       </CodeContainerStyled>
+      {console.log(
+        "Estado de showVerifiedModal en renderizado:",
+        showVerifiedModal
+      )}
+      {showVerifiedModal && <ModalVerification />}{" "}
+      {/* Mostrar el modal si `showModal` es true */}
       <Footer />
     </>
   );
