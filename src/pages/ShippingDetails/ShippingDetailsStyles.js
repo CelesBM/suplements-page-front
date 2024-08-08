@@ -4,15 +4,6 @@ import { Link } from "react-router-dom";
 export const ShippingDetailsContainerStyled = styled.div`
   max-width: 400px;
   margin: auto;
-  margin-bottom: 70px;
-
-  @media (min-width: 768px) {
-    margin-bottom: 110px;
-  }
-
-  @media (min-width: 768px) {
-    margin-bottom: 130px;
-  }
 
   h3 {
     margin: 90px 0px 40px 0px;
@@ -137,6 +128,7 @@ export const InputStyled = styled.input`
 `;
 
 export const ButtonStyled = styled.button`
+  display: flex;
   background-color: #131311;
   border: none;
   border-radius: 1rem;
@@ -146,7 +138,8 @@ export const ButtonStyled = styled.button`
   text-align: center;
   box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  margin-top: 30px;
+  margin-top: 40px;
+  align-items: center;
 
   @media (min-width: 500px) {
     padding: 15px 50px;
@@ -155,6 +148,7 @@ export const ButtonStyled = styled.button`
   @media (min-width: 768px) {
     font-size: 16px;
     padding: 20px 70px;
+    font-weight: bold;
   }
 
   @media (min-width: 1020px) {
@@ -179,9 +173,14 @@ export const ErrorStyled = styled.div`
 `;
 
 export const PurchaseDataContainerStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 400px;
   margin: auto;
   margin-bottom: 70px;
+  gap: 30px;
 
   @media (min-width: 768px) {
     margin-bottom: 110px;
@@ -242,4 +241,88 @@ export const PurchaseDataStyled = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  border-color: #efb810 solid 1px;
+`;
+
+export const ContainerProductsStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  gap: 30px;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+  width: 280px;
+
+  @media (min-width: 500px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 350px;
+  }
+
+  @media (min-width: 768px) {
+    width: 500px;
+  }
+
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .productContainer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+    h5 {
+      font-size: 14px;
+      color: #efb810;
+      text-align: center;
+      font-weight: bold;
+      text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.3);
+    }
+
+    @media (min-width: 768px) {
+      h5 {
+        font-size: 16px;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      color: #efb810;
+      align-items: flex-end;
+      text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.3);
+    }
+
+    @media (min-width: 768px) {
+      h5 {
+        font-size: 16px;
+      }
+    }
+  }
+
+  img {
+    width: 120px;
+    height: 110px;
+  }
+
+  @media (min-width: 768px) {
+    img {
+      width: 190px;
+      height: 220px;
+    }
+  }
+
+  &.wide-image img {
+    width: 210px;
+  }
+
+  @media (min-width: 768px) {
+    &.wide-image img {
+      width: 260px;
+    }
+  }
 `;

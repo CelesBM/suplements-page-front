@@ -111,7 +111,7 @@ const ShopContainer = ({ isOpen }) => {
 
       if (response.ok) {
         dispatch(finishPurchase({ id: data.data.id, items: shopItems }));
-        navigate("/ShippingDetails"); // Redirige a la página de detalles de envío
+        navigate("/ShippingDetails", { state: { items: shopItems } }); // Redirige a la página de detalles de envío
       } else {
         console.log(data.msg);
       }

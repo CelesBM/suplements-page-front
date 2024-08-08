@@ -22,6 +22,7 @@ import {
   ErrorStyled,
   PurchaseDataContainerStyled,
   PurchaseDataStyled,
+  ContainerProductsStyled,
 } from "./ShippingDetailsStyles";
 
 const ShippingDetails = () => {
@@ -29,7 +30,9 @@ const ShippingDetails = () => {
   const [orderId, setOrderId] = useState(null);
   const navigate = useNavigate();
   const shopItems = useSelector((state) => state.shop.shopItems);
-
+  const location = useLocation();
+  const { items } = location.state || { items: [] }; //recupera los datos de los items
+  const currentUser = useSelector((state) => state.user.currentUser);
   //useRedirect("/");
 
   // Validación de los campos con Yup:
@@ -60,10 +63,10 @@ const ShippingDetails = () => {
     onSubmit: async (values) => {
       try {
         // Completa los detalles de envío y realiza la solicitud
-        const response = await createOrder({
-          orderId,
+        /*  const response = await createOrder({
+          orderId: Date.now().toString(), 
           items: shopItems,
-          price: formik.values.totalPrice, // Usa el totalPrice calculado
+          price: formik.values.totalPrice,
           shippingCost: 1000,
           total: formik.values.totalPrice,
           shippingDetails: {
@@ -72,10 +75,26 @@ const ShippingDetails = () => {
             location: values.location,
             address: values.address,
           },
+        });*/
+
+        // Realiza la solicitud para crear la orden con los detalles de envío
+        const response = await fetch("http://127.0.0.1:8080/orders/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-token": currentUser.token, // Reemplaza con el token de autenticación actual
+          },
+          body: JSON.stringify({
+            items,
+            price: formik.values.totalPrice, // Usa el totalPrice calculado
+            shippingCost: 1000,
+            total: formik.values.totalPrice,
+            shippingDetails: values,
+          }),
         });
 
         if (response.ok) {
-          dispatch(clearShop()); // Limpiar el carrito después de la compra
+          //dispatch(clearShop()); // Limpiar el carrito después de la compra
           console.log("funciono el shipping");
           //navigate("/success"); // Redirige a una página de éxito si es necesario
         } else {
@@ -153,10 +172,23 @@ const ShippingDetails = () => {
       </ShippingDetailsContainerStyled>
       <PurchaseDataContainerStyled>
         <h3>Datos de compra</h3>
+        <ContainerProductsStyled>
+          {items.length > 0 ? (
+            items.map((item) => (
+              <div className="productContainer" key={item.id}>
+                <img src={item.img} alt={item.title} />
+                <div className="infoContainer">
+                  <h5>{item.title}</h5>
+                  <p>${item.price}</p>
+                  <p>Cantidad: {item.quantity}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No hay productos en el carrito.</p>
+          )}
+        </ContainerProductsStyled>
 
-        <PurchaseDataStyled>
-          Acá tiene que traer el carrito de compras
-        </PurchaseDataStyled>
         <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
           <ButtonStyled type="submit">Confirmar compra</ButtonStyled>
         </motion.div>
