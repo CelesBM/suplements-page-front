@@ -11,6 +11,7 @@ import { setCurrentUser } from "../../redux/user/UserSlice";
 import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { finishPurchase } from "../../redux/shop/shopSlice";
 import {
   ShippingDetailsContainerStyled,
   ShippingDetailsStyled,
@@ -31,9 +32,11 @@ const ShippingDetails = () => {
   const navigate = useNavigate();
   const shopItems = useSelector((state) => state.shop.shopItems);
   const location = useLocation();
-  const { items } = location.state || { items: [] }; //recupera los datos de los items
+  const items = location.state?.items || [];
+  //const { items } = location.state || { items: [] }; //recupera los datos de los items
   const currentUser = useSelector((state) => state.user.currentUser);
   //useRedirect("/");
+  console.log(items);
 
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
@@ -61,44 +64,41 @@ const ShippingDetails = () => {
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      try {
-        // Completa los detalles de envío y realiza la solicitud
-        /*  const response = await createOrder({
-          orderId: Date.now().toString(), 
-          items: shopItems,
-          price: formik.values.totalPrice,
-          shippingCost: 1000,
-          total: formik.values.totalPrice,
-          shippingDetails: {
-            name: values.name,
-            cellphone: values.cellphone,
-            location: values.location,
-            address: values.address,
-          },
-        });*/
+      //console.log("Valores del formulario:", values);
+      const purchaseData = {
+        items,
+        price: items.reduce((acc, item) => acc + item.price * item.quantity, 0),
+        shippingCost: 1000,
+        total:
+          items.reduce((acc, item) => acc + item.price * item.quantity, 0) +
+          1000,
+        shippingDetails: {
+          name: values.name,
+          cellphone: values.cellphone,
+          location: values.location,
+          address: values.address,
+        },
+      };
 
-        // Realiza la solicitud para crear la orden con los detalles de envío
+      console.log("Datos de compra antes de enviar:", purchaseData);
+
+      try {
         const response = await fetch("http://127.0.0.1:8080/orders/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-token": currentUser.token, // Reemplaza con el token de autenticación actual
+            "x-token": currentUser.token, // Asegúrate de enviar el token
           },
-          body: JSON.stringify({
-            items,
-            price: formik.values.totalPrice, // Usa el totalPrice calculado
-            shippingCost: 1000,
-            total: formik.values.totalPrice,
-            shippingDetails: values,
-          }),
+          body: JSON.stringify(purchaseData),
         });
-
         if (response.ok) {
-          //dispatch(clearShop()); // Limpiar el carrito después de la compra
-          console.log("funciono el shipping");
-          //navigate("/success"); // Redirige a una página de éxito si es necesario
+          dispatch(finishPurchase(purchaseData));
+          const data = await response.json();
+          alert("Compra realizada con éxito");
+          // Redirige a una página de éxito si es necesario
         } else {
-          console.error("Error al completar la compra");
+          const errorData = await response.json(); // Obtener información del error
+          console.error("Error al completar la compra:", errorData);
         }
       } catch (error) {
         console.error("Error:", error);
@@ -168,6 +168,9 @@ const ShippingDetails = () => {
               <ErrorStyled>{formik.errors.address}</ErrorStyled>
             ) : null}
           </ShippingDetailsGroupStyled>
+          <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
+            <ButtonStyled type="submit">Confirmar compra</ButtonStyled>
+          </motion.div>
         </ShippingDetailsStyled>
       </ShippingDetailsContainerStyled>
       <PurchaseDataContainerStyled>
@@ -188,10 +191,6 @@ const ShippingDetails = () => {
             <p>No hay productos en el carrito.</p>
           )}
         </ContainerProductsStyled>
-
-        <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
-          <ButtonStyled type="submit">Confirmar compra</ButtonStyled>
-        </motion.div>
       </PurchaseDataContainerStyled>
       <Footer />
     </>
