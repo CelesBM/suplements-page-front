@@ -94,7 +94,14 @@ const ShippingDetails = () => {
         if (response.ok) {
           dispatch(finishPurchase(purchaseData));
           const data = await response.json();
-          alert("Compra realizada con éxito");
+          navigate("/Success", {
+            state: {
+              items,
+              shippingDetails: purchaseData.shippingDetails,
+              shippingCost: purchaseData.shippingCost,
+              total: purchaseData.total,
+            },
+          });
           // Redirige a una página de éxito si es necesario
         } else {
           const errorData = await response.json(); // Obtener información del error

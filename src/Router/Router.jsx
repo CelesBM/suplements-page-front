@@ -9,6 +9,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Code from "../pages/Code/Code";
 import ShippingDetails from "../pages/ShippingDetails/ShippingDetails";
+import Success from "../pages/Success/Success";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
         <Route path="/Register" element={<Register />} />
         <Route path="/Verify" element={<Code />} />
         <Route path="/ShippingDetails" element={<ShippingDetails />} />
+        <Route path="/Success" element={<Success />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
