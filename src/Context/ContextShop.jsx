@@ -11,7 +11,6 @@ export const ShopContextProvider = ({ children }) => {
 
   const toggleShop = () => {
     setIsShopOpen(!isShopOpen);
-    console.log("funciona");
   };
 
   const contextValue = {

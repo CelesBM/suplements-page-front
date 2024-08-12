@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import useRedirect from "../../Redirect/useRedirect";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../axios/axios-user";
 import { motion } from "framer-motion";
@@ -15,7 +14,6 @@ import {
   LabelStyled,
   InputStyled,
   ButtonStyled,
-  LinkStyled,
   ErrorStyled,
 } from "./RegisterStyles";
 import { setCurrentUser } from "../../redux/user/UserSlice";
@@ -23,7 +21,7 @@ import { setCurrentUser } from "../../redux/user/UserSlice";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [error, setError] = useState(""); // Nuevo estado para manejar el error
+  const [error, setError] = useState(""); //Nuevo estado para manejar el error
 
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
@@ -54,7 +52,7 @@ const Register = () => {
           values.email,
           values.password
         );
-        console.log("Funciona, user:", user);
+        console.log("User creado:", user);
         if (user) {
           dispatch(
             setCurrentUser({
@@ -125,7 +123,6 @@ const Register = () => {
             ) : null}
           </RegisterGroupStyled>
           {error && <ErrorStyled>{error}</ErrorStyled>}{" "}
-          {/* Muestra el error aquí */}
           <motion.div whileTap={{ scale: 1.2 }} whileHover={{ scale: 1.1 }}>
             <ButtonStyled type="submit">Registrarse</ButtonStyled>
           </motion.div>

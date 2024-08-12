@@ -62,24 +62,6 @@ export const ModalRemoveAllProducts = () => {
   );
 };
 
-// Finalizar compra:
-/*export const ModalSuccessBuy = () => {
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-
-  return (
-    <ModalOverlayStyled>
-      <ModalStyled>
-        <ModalSpanStyled>
-          <ModalCloseStyled onClick={() => setShowPurchaseModal(false)}>
-            &times;
-          </ModalCloseStyled>
-          <p>Compra finalizada con éxito!</p>
-        </ModalSpanStyled>
-      </ModalStyled>
-    </ModalOverlayStyled>
-  );
-};*/
-
 // Mensaje enviado en la seccion Contact:
 export const ModalContact = () => {
   const [showContactModal, setShowContactModal] = useState(false);
@@ -100,6 +82,7 @@ export const ModalContact = () => {
   );
 };
 
+// Mensaje de verificación exitosa:
 export const ModalVerification = () => (
   <ModalOverlayStyled>
     <ModalStyled>

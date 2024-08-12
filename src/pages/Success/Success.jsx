@@ -1,39 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import useRedirect from "../../Redirect/useRedirect";
 import { useLocation } from "react-router-dom";
-import { loginUser } from "../../axios/axios-user";
-import { createOrder } from "../../axios/axios-user";
-import { setCurrentUser } from "../../redux/user/UserSlice";
-import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { finishPurchase } from "../../redux/shop/shopSlice";
 import {
   SuccessContainerStyled,
-  ButtonStyled,
-  LinkStyled,
   PurchaseDataContainerStyled,
-  PurchaseDataStyled,
   ContainerProductsStyled,
   ShippingDataContainerStyled,
 } from "./SuccessStyles";
 
 const Success = () => {
-  const dispatch = useDispatch();
-  const [orderId, setOrderId] = useState(null);
-  const navigate = useNavigate();
-  const shopItems = useSelector((state) => state.shop.shopItems);
   const location = useLocation();
   const items = location.state?.items || [];
   const shippingDetails = location.state?.shippingDetails || [];
-  //const { items } = location.state || { items: [] }; //recupera los datos de los items
   const currentUser = useSelector((state) => state.user.currentUser);
-  //useRedirect("/");
-
   const shippingCost = location.state?.shippingCost || 0;
   const total = location.state?.total || 0;
 

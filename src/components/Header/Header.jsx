@@ -127,16 +127,3 @@ const Header = () => {
 };
 
 export default Header;
-
-//<IconStyled>
-//<BsFillPersonFill />
-//</IconStyled>
-//{currentUser ? (
-//  <SpanStyled>{currentUser.name}</SpanStyled> // Muestra el nombre del usuario
-
-//) : (
-//  <LinkStyled to="/Login">
-//    <SpanStyled>Iniciar Sesión</SpanStyled>
-//  </LinkStyled>
-//)}
-//</MotionDivStyled>

@@ -9,11 +9,10 @@ export const createUser = async (name, email, password) => {
       email,
       password,
     });
-    // Si la creación del usuario es exitosa, intentamos iniciar sesión
+    //Si la creación del usuario es exitosa, intento iniciar sesión:
     const user = await loginUser(email, password);
     return user;
   } catch (error) {
-    // Lanza el error para que pueda ser manejado por el componente
     throw error;
   }
 };
@@ -26,7 +25,6 @@ export const loginUser = async (email, password) => {
     });
     return res.data;
   } catch (error) {
-    //return console.log(error.response.data.msg);
     throw (error, console.log(error.response.data.msg));
   }
 };
@@ -41,13 +39,10 @@ export const verifyUser = async (email, code) => {
   } catch (error) {
     console.error("Error en la solicitud de verificación:", error);
     if (error.response) {
-      // Respuesta del servidor con errores
       alert(error.response.data.msg || "Error en el servidor");
     } else if (error.request) {
-      // Solicitud realizada pero sin respuesta
       alert("No se recibió respuesta del servidor");
     } else {
-      // Error al configurar la solicitud
       alert("Error al configurar la solicitud");
     }
     return null;
@@ -58,7 +53,7 @@ export const getOrders = async (token) => {
   try {
     const response = await axios.get(`${DATABASE_URL}/orders/`, {
       headers: {
-        "x-token": token, // Añade el token de autenticación
+        "x-token": token,
       },
     });
     return response.data;
@@ -74,7 +69,7 @@ export const createOrder = async (orderData) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-token": "your-auth-token", // Reemplaza con el token de autenticación actual
+        "x-token": "token",
       },
       body: JSON.stringify(orderData),
     });

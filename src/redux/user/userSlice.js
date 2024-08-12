@@ -11,16 +11,10 @@ const userSlice = createSlice({
   reducers: {
     setCurrentUser: (state, action) => {
       state.currentUser = action.payload;
-      /* return {
-        ...state, //no se si va
-        currentUser: action.payload,
-      };*/
     },
-    //nuevo
     clearUser: (state) => {
       state.currentUser = null;
     },
-    //
     setVerified: (state) => {
       if (state.currentUser) {
         state.currentUser.verified = true;
@@ -28,7 +22,7 @@ const userSlice = createSlice({
     },
     toggleMenuHidden: (state) => {
       return {
-        ...state, //no se si va
+        ...state,
         hiddenMenu: !state.hiddenMenu,
       };
     },

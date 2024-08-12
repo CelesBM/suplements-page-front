@@ -19,7 +19,6 @@ import {
   LabelStyled,
   InputStyled,
   ButtonStyled,
-  LinkStyled,
   ErrorStyled,
   PurchaseDataContainerStyled,
   PurchaseDataStyled,
@@ -33,10 +32,8 @@ const ShippingDetails = () => {
   const shopItems = useSelector((state) => state.shop.shopItems);
   const location = useLocation();
   const items = location.state?.items || [];
-  //const { items } = location.state || { items: [] }; //recupera los datos de los items
   const currentUser = useSelector((state) => state.user.currentUser);
-  //useRedirect("/");
-  console.log(items);
+  //console.log(items);
 
   // Validación de los campos con Yup:
   const validationSchema = Yup.object({
@@ -45,7 +42,7 @@ const ShippingDetails = () => {
       .matches(
         /^[0-9]{10}$/,
         "* Debe ser un número de celular válido (10 dígitos)"
-      ) // Ajusta el patrón según el formato deseado
+      )
       .required("* Campo obligatorio"),
     location: Yup.string().trim().required("* Campo obligatorio"),
     address: Yup.string().trim().required("* Campo obligatorio"),
@@ -64,7 +61,6 @@ const ShippingDetails = () => {
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      //console.log("Valores del formulario:", values);
       const purchaseData = {
         items,
         price: items.reduce((acc, item) => acc + item.price * item.quantity, 0),
@@ -80,14 +76,12 @@ const ShippingDetails = () => {
         },
       };
 
-      console.log("Datos de compra antes de enviar:", purchaseData);
-
       try {
         const response = await fetch("http://127.0.0.1:8080/orders/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-token": currentUser.token, // Asegúrate de enviar el token
+            "x-token": currentUser.token,
           },
           body: JSON.stringify(purchaseData),
         });
@@ -102,9 +96,8 @@ const ShippingDetails = () => {
               total: purchaseData.total,
             },
           });
-          // Redirige a una página de éxito si es necesario
         } else {
-          const errorData = await response.json(); // Obtener información del error
+          const errorData = await response.json();
           console.error("Error al completar la compra:", errorData);
         }
       } catch (error) {

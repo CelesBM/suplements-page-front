@@ -55,53 +55,6 @@ export const SuccessContainerStyled = styled.div`
   }
 `;
 
-export const ShippingDetailsStyled = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-`;
-
-export const ButtonStyled = styled.button`
-  display: flex;
-  background-color: #131311;
-  border: none;
-  border-radius: 1rem;
-  padding: 10px 30px;
-  font-size: 14px;
-  color: #efb810;
-  text-align: center;
-  box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  margin: 10px 0px 40px 0px;
-  align-items: center;
-
-  @media (min-width: 500px) {
-    padding: 15px 50px;
-  }
-
-  @media (min-width: 768px) {
-    font-size: 16px;
-    padding: 20px 70px;
-    font-weight: bold;
-  }
-
-  @media (min-width: 1020px) {
-    font-size: 18px;
-    padding: 20px 100px;
-  }
-
-  @media (min-width: 1285px) {
-    margin-top: 30px;
-    padding: 20px 130px;
-  }
-`;
-
-export const LinkStyled = styled(Link)`
-  text-decoration: none;
-  cursor: pointer;
-`;
-
 export const PurchaseDataContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -221,14 +174,6 @@ export const ShippingDataContainerStyled = styled.div`
       margin-top: 90px;
     }
   }
-`;
-
-export const PurchaseDataStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  border-color: #efb810 solid 1px;
 `;
 
 export const ContainerProductsStyled = styled.div`

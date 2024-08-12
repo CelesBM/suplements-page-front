@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import useRedirect from "../../Redirect/useRedirect";
-import { useLocation } from "react-router-dom";
-import { loginUser } from "../../axios/axios-user";
 import { createOrder } from "../../axios/axios-user";
 import { setCurrentUser } from "../../redux/user/UserSlice";
-import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { finishPurchase } from "../../redux/shop/shopSlice";
@@ -18,25 +12,8 @@ import {
   PurchasesContainerStyled,
   ContainerProductsStyled,
 } from "./PurchasesStyles";
-import {
-  SuccessContainerStyled,
-  ButtonStyled,
-  LinkStyled,
-  PurchaseDataContainerStyled,
-  PurchaseDataStyled,
-  ShippingDataContainerStyled,
-} from "../Success/SuccessStyles";
 
 const Purchases = () => {
-  /* const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const items = location.state?.items || [];
-  const shippingDetails = location.state?.shippingDetails || [];
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const shippingCost = location.state?.shippingCost || 0;
-  const total = location.state?.total || 0;*/
-
   const [purchases, setPurchases] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -59,7 +36,7 @@ const Purchases = () => {
       fetchOrders();
     } else {
       console.log("no hay token");
-      //navigate("/login"); // Redirigir al login si no hay token
+      navigate("/login"); //Redirigir al login si no hay token
     }
   }, [token, navigate]);
 

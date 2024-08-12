@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import useRedirect from "../../Redirect/useRedirect";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import { loginUser } from "../../axios/axios-user";
 import { setCurrentUser } from "../../redux/user/UserSlice";
 import { motion } from "framer-motion";
@@ -44,7 +43,6 @@ const Login = () => {
   };
 
   // Uso formik:
-  // Uso formik:
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -52,21 +50,21 @@ const Login = () => {
       try {
         const user = await loginUser(values.email, values.password);
         console.log(user);
-        console.log(user.user.verified);
+        //console.log(user.user.verified);
         if (user) {
           if (!user.user.verified) {
-            // Si el usuario no está verificado
+            //Si el usuario no está verificado:
             setError("Usuario no verificado. Por favor verifica tu correo.");
             navigate("/Verify", { state: { user: user.user } });
           } else {
-            // Si el usuario está verificado
+            //Si el usuario está verificado:
             dispatch(
               setCurrentUser({
                 ...user,
                 token: user.token,
               })
             );
-            navigate("/"); // Redirige a la página principal o a donde desees
+            navigate("/"); // Redirige a la página principal
           }
         }
       } catch (error) {

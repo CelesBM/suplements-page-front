@@ -162,11 +162,6 @@ export const ButtonStyled = styled.button`
   }
 `;
 
-export const LinkStyled = styled(Link)`
-  text-decoration: none;
-  cursor: pointer;
-`;
-
 export const ErrorStyled = styled.div`
   color: #d7ae2f;
   font-size: 10px;

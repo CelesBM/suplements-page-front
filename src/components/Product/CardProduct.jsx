@@ -10,13 +10,11 @@ import {
 } from "../../pages/Products/ProductsStyles";
 
 // Render de cada producto de la sección PRODUCTS:
-
 const CardProduct = ({ id, title, img, description, price }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
   // Función para agregar productos al carrito:
-
   const handleAddToShop = () => {
     dispatch(addToShop({ id, title, price, img })); // Agrega el producto al carrito
     setShowModal(true); // Muestra el modal al añadir el producto al carrito

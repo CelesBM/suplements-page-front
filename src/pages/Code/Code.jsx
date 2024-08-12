@@ -46,7 +46,6 @@ const Code = () => {
   };
 
   // Uso formik:
-  // Uso formik:
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -57,18 +56,12 @@ const Code = () => {
       }
       try {
         const result = await verifyUser(values.email, values.code);
-        console.log("Funciona, user:", result);
         dispatch(setVerified());
         setShowVerifiedModal(true); // Mostrar el modal
         setTimeout(() => {
           setShowVerifiedModal(false);
           navigate("/Login");
         }, 1000); // Tiempo que aparece el modal
-        console.log(
-          "Estado de showVerifiedModal después de setShowVerifiedModal:",
-          showVerifiedModal
-        ); // Verificar el estado
-        //navigate("/"); // Redirige a la página principal después de la verificación
       } catch (error) {
         console.error("Error en la verificación:", error);
         setError("Error en la verificación. Inténtalo de nuevo.");
@@ -78,11 +71,10 @@ const Code = () => {
 
   useEffect(() => {
     if (!currentUser && !user) {
-      console.log("¡No hay usuario actual!");
-      navigate("/login"); // Redirige al login si no hay usuario
+      console.log("No hay usuario actual");
+      navigate("/login"); //Redirige al login si no hay usuario
     } else if (currentUser && currentUser.verified) {
-      console.log("Usuario ya verificado");
-      navigate("/"); // Redirige a la página principal si el usuario ya está verificado
+      navigate("/"); //Redirige a la página principal si el usuario ya está verificado
     }
   }, [currentUser, user, navigate]);
 
@@ -121,10 +113,6 @@ const Code = () => {
           </motion.div>
         </CodeStyled>
       </CodeContainerStyled>
-      {console.log(
-        "Estado de showVerifiedModal en renderizado:",
-        showVerifiedModal
-      )}
       {showVerifiedModal && <ModalVerification />}{" "}
       {/* Mostrar el modal si `showModal` es true */}
       <Footer />

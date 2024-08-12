@@ -3,6 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAppShopContext } from "../../Context/ContextShop";
 import { useNavigate } from "react-router-dom";
 import {
+  addToShop,
+  decrementQuantity,
+  removeProduct,
+  clearShop,
+} from "../../redux/shop/shopSlice";
+import { ModalRemoveOneProduct, ModalRemoveAllProducts } from "../Modal/Modal";
+import {
   ShopContainerStyled,
   ShopProductsContainerStyled,
   ProductContainerStyled,
@@ -16,26 +23,14 @@ import {
   SpanStyled,
 } from "./shopContainerStyles";
 import { MdDelete } from "react-icons/md";
-import {
-  addToShop,
-  decrementQuantity,
-  removeProduct,
-  clearShop,
-  finishPurchase,
-} from "../../redux/shop/shopSlice";
-import { ModalRemoveOneProduct, ModalRemoveAllProducts } from "../Modal/Modal";
-//Dentro de /modal saqué por ahora ModalSuccessBuy,} from "../Modal/Modal";
 
 // Carrito de compras:
 
 const ShopContainer = ({ isOpen }) => {
   const navigate = useNavigate();
   const { isShopOpen, toggleShop } = useAppShopContext();
-  const [showModal, setShowModal] = useState(false);
   const [showEmptyCartModal, setShowEmptyCartModal] = useState(false);
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [showProductRemovedModal, setShowProductRemovedModal] = useState(false);
-  const [removedProductTitle, setRemovedProductTitle] = useState("");
   const shopItems = useSelector((state) => state.shop.shopItems);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -81,56 +76,9 @@ const ShopContainer = ({ isOpen }) => {
     return totalPrice;
   };
 
-  // Para finalizar la compra:
-  const handleBuy = async () => {
-    // Generar un identificador único para esta compra (por ejemplo, usando un timestamp):
-    const purchaseId = Date.now().toString(); // Identificador único para esta compra con Timestamp
-    const purchaseData = {
-      items: shopItems,
-      price: handleTotalPrice(),
-      shippingCost: 1000, // Cambia esto si tienes un costo de envío calculado
-      total: handleTotalPrice(), // Total a pagar
-      shippingDetails: {
-        name: "", // Placeholder, se completará en la página de detalles de envío
-        cellphone: "",
-        location: "",
-        address: "",
-      },
-    };
-
-    try {
-      const response = await fetch("http://127.0.0.1:8080/orders/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-token": currentUser.token, // Reemplaza con el token de autenticación actual
-        },
-        body: JSON.stringify(purchaseData),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        dispatch(finishPurchase({ id: data.data.id, items: shopItems }));
-        navigate("/ShippingDetails", { state: { items: shopItems } }); // Redirige a la página de detalles de envío
-      } else {
-        console.log(data.msg);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-    // Obtener compras anteriores del localStorage o un array vacío:
-    const previousPurchases =
-      JSON.parse(localStorage.getItem("purchases")) || [];
-    // Agregar la nueva compra a las anteriores:
-    previousPurchases.push(purchaseData);
-    // Guardar en el localStorage las compras anteriores junto con la nueva:
-    localStorage.setItem("purchases", JSON.stringify(previousPurchases));
-
-    dispatch(clearShop()); // Limpiar el carrito después de la compra
-    setShowPurchaseModal(true); // Mostrar el modal al realizar la compra
-    setTimeout(() => {
-      setShowPurchaseModal(false);
-    }, 1000);
+  // Para comenzar la compra e ir a ShippingDetails:
+  const handleBuy = () => {
+    navigate("/ShippingDetails", { state: { items: shopItems } }); //Guarda los datos del carrito y redirige al usuario a la página de detalles de envío
   };
 
   return (
@@ -188,8 +136,6 @@ const ShopContainer = ({ isOpen }) => {
             Mis Compras
           </ButtonStyled>
         )}
-
-        {/*showPurchaseModal && <ModalSuccessBuy />*/}
       </ShopTotalInfoStyled>
     </ShopContainerStyled>
   );
