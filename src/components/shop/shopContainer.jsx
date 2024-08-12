@@ -182,6 +182,13 @@ const ShopContainer = ({ isOpen }) => {
           <ButtonStyled onClick={handleBuy}>Comenzar compra</ButtonStyled>
         )}
         {showEmptyCartModal && <ModalRemoveAllProducts />}
+        {/* Mostrar botón "Mis Compras" solo si hay un usuario logueado */}
+        {currentUser && (
+          <ButtonStyled onClick={() => navigate("/Purchases")}>
+            Mis Compras
+          </ButtonStyled>
+        )}
+
         {/*showPurchaseModal && <ModalSuccessBuy />*/}
       </ShopTotalInfoStyled>
     </ShopContainerStyled>

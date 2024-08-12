@@ -10,6 +10,7 @@ import Register from "../pages/Register/Register";
 import Code from "../pages/Code/Code";
 import ShippingDetails from "../pages/ShippingDetails/ShippingDetails";
 import Success from "../pages/Success/Success";
+import Purchases from "../pages/Purchases/Purchases";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function Router() {
         <Route path="/Verify" element={<Code />} />
         <Route path="/ShippingDetails" element={<ShippingDetails />} />
         <Route path="/Success" element={<Success />} />
+        <Route path="/Purchases" element={<Purchases />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

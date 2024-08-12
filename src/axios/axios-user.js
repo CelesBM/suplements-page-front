@@ -54,6 +54,20 @@ export const verifyUser = async (email, code) => {
   }
 };
 
+export const getOrders = async (token) => {
+  try {
+    const response = await axios.get(`${DATABASE_URL}/orders/`, {
+      headers: {
+        "x-token": token, // Añade el token de autenticación
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener las órdenes:", error);
+    throw error;
+  }
+};
+
 export const createOrder = async (orderData) => {
   try {
     const response = await fetch(`${DATABASE_URL}/orders/`, {
