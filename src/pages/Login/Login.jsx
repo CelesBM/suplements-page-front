@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import useRedirect from "../../Redirect/useRedirect";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../axios/axios-user";
-import { setCurrentUser } from "../../redux/user/UserSlice";
+import { setCurrentUser } from "../../redux/user/userSlice";
 import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
