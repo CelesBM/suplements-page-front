@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DATABASE_URL = "http://127.0.0.1:8080";
+const DATABASE_URL = "https://suplements-page-back.vercel.app";
 
 export const createUser = async (name, email, password) => {
   try {
