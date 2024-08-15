@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { verifyUser } from "../../axios/axios-user";
-import { setVerified } from "../../redux/user/UserSlice";
+import { setVerified } from "../../redux/user/userSlice";
 import { ModalVerification } from "../../components/Modal/Modal";
 import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";

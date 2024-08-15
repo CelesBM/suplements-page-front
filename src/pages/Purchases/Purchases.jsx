@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createOrder } from "../../axios/axios-user";
-import { setCurrentUser } from "../../redux/user/UserSlice";
+import { setCurrentUser } from "../../redux/user/userSlice";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { finishPurchase } from "../../redux/shop/shopSlice";

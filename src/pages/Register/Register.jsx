@@ -16,7 +16,7 @@ import {
   ButtonStyled,
   ErrorStyled,
 } from "./RegisterStyles";
-import { setCurrentUser } from "../../redux/user/UserSlice";
+import { setCurrentUser } from "../../redux/user/userSlice";
 
 const Register = () => {
   const dispatch = useDispatch();
